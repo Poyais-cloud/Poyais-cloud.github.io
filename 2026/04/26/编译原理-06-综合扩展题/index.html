@@ -1,0 +1,818 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>编译原理 - 综合扩展题 | Hi! I'm Poyais</title><meta name="author" content="Poyais"><meta name="copyright" content="Poyais"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="返回目录     06 — 综合扩展题 上一节 05 - 语义分析与中间代码 | 返回 00 - 索引 | 下一节 99 - 试卷原题汇总   本节归集跨模块的综合题与开放题，命题人通常用这些题目检测系统性理解能力。常见类型：  已实现的小语言（如 TINY）扩展新语法 编译器各阶段功能比较与流程梳理 给出场景要求设计文法 + 语义动作 + 中间代码生成 编译期 vs 解释期、前端 vs 后端的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="编译原理 - 综合扩展题">
+<meta property="og:url" content="https://poyais-cloud.github.io/2026/04/26/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86-06-%E7%BB%BC%E5%90%88%E6%89%A9%E5%B1%95%E9%A2%98/index.html">
+<meta property="og:site_name" content="Hi! I&#39;m Poyais">
+<meta property="og:description" content="返回目录     06 — 综合扩展题 上一节 05 - 语义分析与中间代码 | 返回 00 - 索引 | 下一节 99 - 试卷原题汇总   本节归集跨模块的综合题与开放题，命题人通常用这些题目检测系统性理解能力。常见类型：  已实现的小语言（如 TINY）扩展新语法 编译器各阶段功能比较与流程梳理 给出场景要求设计文法 + 语义动作 + 中间代码生成 编译期 vs 解释期、前端 vs 后端的">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://poyais-cloud.github.io/img/avatar.jpg">
+<meta property="article:published_time" content="2026-04-25T22:00:00.000Z">
+<meta property="article:modified_time" content="2026-04-26T16:33:19.771Z">
+<meta property="article:author" content="Poyais">
+<meta property="article:tag" content="编译原理">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://poyais-cloud.github.io/img/avatar.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "编译原理 - 综合扩展题",
+  "url": "https://poyais-cloud.github.io/2026/04/26/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86-06-%E7%BB%BC%E5%90%88%E6%89%A9%E5%B1%95%E9%A2%98/",
+  "image": "https://poyais-cloud.github.io/img/avatar.jpg",
+  "datePublished": "2026-04-25T22:00:00.000Z",
+  "dateModified": "2026-04-26T16:33:19.771Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Poyais",
+      "url": "https://poyais-cloud.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://poyais-cloud.github.io/2026/04/26/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86-06-%E7%BB%BC%E5%90%88%E6%89%A9%E5%B1%95%E9%A2%98/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.3"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          const mediaQueryDark = window.matchMedia('(prefers-color-scheme: dark)')
+          const mediaQueryLight = window.matchMedia('(prefers-color-scheme: light)')
+
+          if (theme === undefined) {
+            if (mediaQueryLight.matches) activateLightMode()
+            else if (mediaQueryDark.matches) activateDarkMode()
+            else {
+              const hour = new Date().getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            mediaQueryDark.addEventListener('change', () => {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else {
+            theme === 'light' ? activateLightMode() : activateDarkMode()
+          }
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '编译原理 - 综合扩展题',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><style>
+/* 主色调 - 清浅绿色 */
+:root {
+  --theme-color: #5a8f6a;
+  --theme-color-light: #7ab08a;
+  --theme-color-dark: #4a7f5a;
+}
+
+/* 链接颜色 */
+a {
+  color: #5a8f6a;
+  transition: all 0.3s ease;
+}
+a:hover {
+  color: #4a7f5a;
+}
+
+/* 导航栏玻璃效果 */
+#nav {
+  background: rgba(255, 255, 255, 0.6) !important;
+  backdrop-filter: blur(10px);
+}
+#nav a {
+  color: #4a7f5a !important;
+}
+#nav a:hover {
+  color: #5a8f6a !important;
+}
+
+/* 顶部图底部渐变过渡 */
+#page-header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.9));
+  pointer-events: none;
+}
+
+/* 网站背景半透明 */
+#web_bg {
+  opacity: 0.4 !important;
+}
+
+/* 页脚保留背景图，添加玻璃效果 */
+#footer {
+  background-color: rgba(255, 255, 255, 0.5) !important;
+  backdrop-filter: blur(10px);
+}
+
+/* 文章卡片玻璃效果 */
+.recent-post-item {
+  background: rgba(255, 255, 255, 0.7) !important;
+  backdrop-filter: blur(8px);
+  border-radius: 12px;
+  border: 1px solid rgba(90, 143, 106, 0.2);
+}
+.recent-post-item:hover {
+  border-color: rgba(90, 143, 106, 0.4);
+}
+
+/* 侧边栏卡片玻璃效果 */
+#aside-content .card-widget {
+  background: rgba(255, 255, 255, 0.7) !important;
+  backdrop-filter: blur(8px);
+  border-radius: 10px;
+  border: 1px solid rgba(90, 143, 106, 0.2);
+}
+
+/* 标签颜色 */
+.tag, .category a {
+  background: rgba(90, 143, 106, 0.15) !important;
+  color: #5a8f6a !important;
+}
+.tag:hover, .category a:hover {
+  background: rgba(90, 143, 106, 0.3) !important;
+}
+
+/* 雨滴动效 */
+.rain-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  overflow: hidden;
+  transition: opacity 0.5s ease;
+}
+
+/* 专注模式下隐藏雨滴 */
+.rain-container.hidden {
+  opacity: 0;
+}
+
+.rain-drop {
+  position: absolute;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, rgba(120, 170, 220, 0.5));
+  animation: rain-fall linear infinite;
+  opacity: 0;
+}
+
+@keyframes rain-fall {
+  0% { transform: translateY(-30px); opacity: 0; }
+  10% { opacity: 0.6; }
+  90% { opacity: 0.6; }
+  100% { transform: translateY(100vh); opacity: 0; }
+}
+
+/* 随机分布的雨滴 - 更细更错落 */
+.rain-drop:nth-child(1) { left: 3.2%; height: 18px; animation-duration: 1.7s; animation-delay: 0.05s; }
+.rain-drop:nth-child(2) { left: 7.8%; height: 25px; animation-duration: 1.9s; animation-delay: 0.35s; }
+.rain-drop:nth-child(3) { left: 11.5%; height: 15px; animation-duration: 1.5s; animation-delay: 0.62s; }
+.rain-drop:nth-child(4) { left: 16.3%; height: 22px; animation-duration: 2.1s; animation-delay: 0.18s; }
+.rain-drop:nth-child(5) { left: 21.7%; height: 28px; animation-duration: 1.8s; animation-delay: 0.44s; }
+.rain-drop:nth-child(6) { left: 26.1%; height: 12px; animation-duration: 1.6s; animation-delay: 0.77s; }
+.rain-drop:nth-child(7) { left: 31.4%; height: 20px; animation-duration: 2.0s; animation-delay: 0.28s; }
+.rain-drop:nth-child(8) { left: 35.9%; height: 16px; animation-duration: 1.65s; animation-delay: 0.53s; }
+.rain-drop:nth-child(9) { left: 40.2%; height: 24px; animation-duration: 2.05s; animation-delay: 0.12s; }
+.rain-drop:nth-child(10) { left: 45.6%; height: 19px; animation-duration: 1.55s; animation-delay: 0.68s; }
+.rain-drop:nth-child(11) { left: 50.3%; height: 26px; animation-duration: 1.85s; animation-delay: 0.22s; }
+.rain-drop:nth-child(12) { left: 55.8%; height: 14px; animation-duration: 1.72s; animation-delay: 0.58s; }
+.rain-drop:nth-child(13) { left: 61.2%; height: 30px; animation-duration: 2.15s; animation-delay: 0.08s; }
+.rain-drop:nth-child(14) { left: 66.5%; height: 17px; animation-duration: 1.62s; animation-delay: 0.65s; }
+.rain-drop:nth-child(15) { left: 71.9%; height: 23px; animation-duration: 1.92s; animation-delay: 0.38s; }
+.rain-drop:nth-child(16) { left: 76.4%; height: 21px; animation-duration: 1.98s; animation-delay: 0.15s; }
+.rain-drop:nth-child(17) { left: 82.1%; height: 13px; animation-duration: 1.52s; animation-delay: 0.72s; }
+.rain-drop:nth-child(18) { left: 87.3%; height: 27px; animation-duration: 1.88s; animation-delay: 0.42s; }
+.rain-drop:nth-child(19) { left: 92.6%; height: 18px; animation-duration: 1.68s; animation-delay: 0.33s; }
+.rain-drop:nth-child(20) { left: 96.8%; height: 20px; animation-duration: 1.78s; animation-delay: 0.25s; }
+.rain-drop:nth-child(21) { left: 1.5%; height: 11px; animation-duration: 1.45s; animation-delay: 0.85s; }
+.rain-drop:nth-child(22) { left: 13.7%; height: 29px; animation-duration: 2.08s; animation-delay: 0.03s; }
+.rain-drop:nth-child(23) { left: 24.9%; height: 10px; animation-duration: 1.42s; animation-delay: 0.91s; }
+.rain-drop:nth-child(24) { left: 38.1%; height: 32px; animation-duration: 2.2s; animation-delay: 0.07s; }
+.rain-drop:nth-child(25) { left: 52.7%; height: 8px; animation-duration: 1.38s; animation-delay: 0.96s; }
+</style>
+<meta name="generator" content="Hexo 8.1.1"></head><body><div class="bg-animation" id="web_bg" style="background-image: url(/img/site-bg.jpg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">15</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">20</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/notes/"><i class="fa-fw fas fa-book"></i><span> 期末复习</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/compiler-top.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Hi! I'm Poyais</span></a><a class="nav-page-title" href="/"><span class="site-name">编译原理 - 综合扩展题</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/notes/"><i class="fa-fw fas fa-book"></i><span> 期末复习</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">编译原理 - 综合扩展题</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-04-25T22:00:00.000Z" title="发表于 2026-04-26 06:00:00">2026-04-26</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-04-26T16:33:19.771Z" title="更新于 2026-04-27 00:33:19">2026-04-27</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/SCNU%E6%9C%9F%E6%9C%AB%E8%AF%95%E5%8D%B7/">SCNU期末试卷</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/SCNU%E6%9C%9F%E6%9C%AB%E8%AF%95%E5%8D%B7/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/">编译原理</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><div style="text-align:center;margin:10px 0;">
+<a href="/notes/compiler/" style="display:inline-block;padding:6px 16px;background:rgba(90,143,106,0.1);color:#3a5f4a;border:1px solid rgba(90,143,106,0.3);border-radius:6px;text-decoration:none;font-size:14px;">返回目录</a>
+</div>
+
+
+
+<h1 id="06-—-综合扩展题"><a href="#06-—-综合扩展题" class="headerlink" title="06 — 综合扩展题"></a>06 — 综合扩展题</h1><blockquote>
+<p>上一节 05 - 语义分析与中间代码 | 返回 00 - 索引 | 下一节 99 - 试卷原题汇总</p>
+</blockquote>
+<hr>
+<p>本节归集<strong>跨模块的综合题与开放题</strong>，命题人通常用这些题目检测系统性理解能力。常见类型：</p>
+<ul>
+<li>已实现的小语言（如 TINY）扩展新语法</li>
+<li>编译器各阶段功能比较与流程梳理</li>
+<li>给出场景要求设计文法 + 语义动作 + 中间代码生成</li>
+<li>编译期 vs 解释期、前端 vs 后端的概念辨析</li>
+</ul>
+<hr>
+<h2 id="1-编译过程总体流程"><a href="#1-编译过程总体流程" class="headerlink" title="1. 编译过程总体流程"></a>1. 编译过程总体流程</h2><h3 id="编译器五阶段"><a href="#编译器五阶段" class="headerlink" title="编译器五阶段"></a>编译器五阶段</h3><blockquote>
+<p><strong>Note</strong> 编译器经典流水线</p>
+<ol>
+<li><strong>词法分析</strong>（Lexical Analysis）：字符流 → 单词流（token stream）</li>
+<li><strong>语法分析</strong>（Syntax Analysis）：单词流 → 语法树（AST）</li>
+<li><strong>语义分析</strong>（Semantic Analysis）：语法树 + 符号表 → 带类型注解的语法树</li>
+<li><strong>中间代码生成</strong>（IR Generation）：语法树 → 三地址码 &#x2F; 四元组等</li>
+<li><strong>代码优化 + 目标代码生成</strong>：中间代码 → 优化后中间代码 → 汇编&#x2F;机器码</li>
+</ol>
+</blockquote>
+<h3 id="各阶段输入输出对照"><a href="#各阶段输入输出对照" class="headerlink" title="各阶段输入输出对照"></a>各阶段输入输出对照</h3><table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>输入</th>
+<th>输出</th>
+<th>关键技术</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>词法</td>
+<td>字符流</td>
+<td>单词流</td>
+<td>正则、DFA</td>
+</tr>
+<tr>
+<td>语法</td>
+<td>单词流</td>
+<td>语法树</td>
+<td>上下文无关文法、LL&#x2F;LR</td>
+</tr>
+<tr>
+<td>语义</td>
+<td>语法树</td>
+<td>注解树</td>
+<td>属性文法、类型检查</td>
+</tr>
+<tr>
+<td>中间代码</td>
+<td>注解树</td>
+<td>三地址码 &#x2F; 四元组</td>
+<td>语法制导翻译</td>
+</tr>
+<tr>
+<td>优化</td>
+<td>中间代码</td>
+<td>优化后的中间代码</td>
+<td>数据流分析、活跃变量</td>
+</tr>
+<tr>
+<td>目标代码</td>
+<td>优化后中间代码</td>
+<td>汇编&#x2F;机器码</td>
+<td>寄存器分配、指令选择</td>
+</tr>
+</tbody></table>
+<h3 id="真题"><a href="#真题" class="headerlink" title="真题"></a>真题</h3><h4 id="A·三·14-（5-分）简答"><a href="#A·三·14-（5-分）简答" class="headerlink" title="[A·三·14]（5 分）简答"></a>[A·三·14]（5 分）简答</h4><blockquote>
+<p>简述编译过程的主要阶段。</p>
+</blockquote>
+<p><strong>答案要点</strong>：六阶段（词法、语法、语义、中间代码、代码优化、目标代码）+ 两个贯穿全程的辅助模块（<strong>符号表管理</strong>、<strong>错误处理</strong>）。每阶段简述输入输出（参上表）。</p>
+<hr>
+<h4 id="B·二·11-（4-分）多选"><a href="#B·二·11-（4-分）多选" class="headerlink" title="[B·二·11]（4 分）多选"></a>[B·二·11]（4 分）多选</h4><blockquote>
+<p>关于编译过程，下列说法正确的是（ ）<br>A. 词法分析的输入是源程序字符流<br>B. 语法分析依赖词法分析的输出<br>C. 中间代码生成发生在语义分析之前<br>D. 符号表管理贯穿整个编译过程</p>
+</blockquote>
+<p><strong>解答</strong></p>
+<ul>
+<li>A ✓</li>
+<li>B ✓ 语法分析的输入是 token 流（词法输出）</li>
+<li>C ✗ 中间代码在语义分析<strong>之后</strong>（语义分析为中间代码生成做类型注解和符号表查找）</li>
+<li>D ✓ 符号表在词法&#x2F;语法&#x2F;语义&#x2F;代码生成各阶段都被读写</li>
+</ul>
+<p><strong>答案 ABD</strong></p>
+<hr>
+<h2 id="2-编译-vs-解释"><a href="#2-编译-vs-解释" class="headerlink" title="2. 编译 vs 解释"></a>2. 编译 vs 解释</h2><h3 id="区别速记"><a href="#区别速记" class="headerlink" title="区别速记"></a>区别速记</h3><table>
+<thead>
+<tr>
+<th>维度</th>
+<th>编译</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>翻译时机</td>
+<td>一次性翻译完后再执行</td>
+<td>边读边执行</td>
+</tr>
+<tr>
+<td>输出</td>
+<td>目标代码（可执行文件）</td>
+<td>无（直接产生执行效果）</td>
+</tr>
+<tr>
+<td>执行速度</td>
+<td>快（已翻译为机器码）</td>
+<td>慢（每行边翻译边执行）</td>
+</tr>
+<tr>
+<td>跨平台</td>
+<td>需重新编译</td>
+<td>解释器可移植</td>
+</tr>
+<tr>
+<td>代表语言</td>
+<td>C、Pascal、Rust</td>
+<td>Python、Lisp、早期 BASIC</td>
+</tr>
+<tr>
+<td>错误反馈</td>
+<td>编译时报告</td>
+<td>运行时报告</td>
+</tr>
+</tbody></table>
+<h3 id="真题-1"><a href="#真题-1" class="headerlink" title="真题"></a>真题</h3><h4 id="C·三·14-（5-分）简答"><a href="#C·三·14-（5-分）简答" class="headerlink" title="[C·三·14]（5 分）简答"></a>[C·三·14]（5 分）简答</h4><blockquote>
+<p>编译方式与解释方式的主要区别是什么？</p>
+</blockquote>
+<p><strong>答案</strong>：见上表。补充说明：</p>
+<ol>
+<li>编译方式的核心特征——<strong>生成独立的目标程序</strong></li>
+<li>解释方式的核心特征——<strong>逐句翻译并立即执行，不产生独立目标程序</strong></li>
+<li>现代很多语言混合使用：Java 编译为字节码 + JVM 解释执行（或 JIT 编译）</li>
+</ol>
+<hr>
+<h2 id="3-符号表"><a href="#3-符号表" class="headerlink" title="3. 符号表"></a>3. 符号表</h2><h3 id="符号表的功能"><a href="#符号表的功能" class="headerlink" title="符号表的功能"></a>符号表的功能</h3><ul>
+<li>存储<strong>标识符的属性</strong>：类型、作用域、存储位置、参数列表（函数）等</li>
+<li>跨阶段服务：词法（识别保留字）、语义（类型检查）、代码生成（地址分配）</li>
+</ul>
+<h3 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a>实现方式</h3><table>
+<thead>
+<tr>
+<th>方式</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>线性表</td>
+<td>实现简单，查找 O(n)</td>
+</tr>
+<tr>
+<td>二叉搜索树</td>
+<td>平均 O(log n)</td>
+</tr>
+<tr>
+<td>哈希表</td>
+<td>平均 O(1)，<strong>最常用</strong></td>
+</tr>
+<tr>
+<td>栈式符号表</td>
+<td>支持作用域嵌套（块结构语言）</td>
+</tr>
+</tbody></table>
+<h3 id="真题-2"><a href="#真题-2" class="headerlink" title="真题"></a>真题</h3><h4 id="D·一·5-（3-分）单选"><a href="#D·一·5-（3-分）单选" class="headerlink" title="[D·一·5]（3 分）单选"></a>[D·一·5]（3 分）单选</h4><blockquote>
+<p>关于符号表，下列说法错误的是（ ）<br>A. 符号表用于记录标识符的属性<br>B. 符号表只在语义分析阶段使用<br>C. 处理嵌套作用域常用栈式符号表<br>D. 哈希表是常见的符号表实现方式</p>
+</blockquote>
+<p><strong>解答</strong>：<strong>答案 B</strong>。符号表在<strong>词法、语法、语义、代码生成</strong>四个阶段都要用。</p>
+<hr>
+<h2 id="4-中间代码与代码优化"><a href="#4-中间代码与代码优化" class="headerlink" title="4. 中间代码与代码优化"></a>4. 中间代码与代码优化</h2><h3 id="中间代码常见形式"><a href="#中间代码常见形式" class="headerlink" title="中间代码常见形式"></a>中间代码常见形式</h3><table>
+<thead>
+<tr>
+<th>形式</th>
+<th>示例（$A :&#x3D; B + C * D$）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>后缀式（逆波兰）</td>
+<td>$A\ B\ C\ D\ *\ +\ :&#x3D;$</td>
+</tr>
+<tr>
+<td>三地址码</td>
+<td>$t_1 :&#x3D; C * D$；$t_2 :&#x3D; B + t_1$；$A :&#x3D; t_2$</td>
+</tr>
+<tr>
+<td>四元组</td>
+<td>$(*, C, D, t_1)$；$(+, B, t_1, t_2)$；$(:&#x3D;, t_2, _, A)$</td>
+</tr>
+<tr>
+<td>三元组</td>
+<td>$(*, C, D)$；$(+, B, (1))$；$(:&#x3D;, (2), A)$（用编号引用）</td>
+</tr>
+<tr>
+<td>间接三元组</td>
+<td>三元组 + 一个间接表（指向三元组顺序）</td>
+</tr>
+<tr>
+<td>抽象语法树（AST）</td>
+<td>树形结构</td>
+</tr>
+<tr>
+<td>静态单赋值（SSA）</td>
+<td>每变量恰被赋值一次</td>
+</tr>
+</tbody></table>
+<h3 id="优化层次"><a href="#优化层次" class="headerlink" title="优化层次"></a>优化层次</h3><ul>
+<li><strong>局部优化</strong>：基本块内（无控制流跳出&#x2F;跳入的代码段）</li>
+<li><strong>全局优化</strong>：跨基本块、整个函数内</li>
+<li><strong>过程间优化</strong>：跨函数</li>
+</ul>
+<h3 id="真题-3"><a href="#真题-3" class="headerlink" title="真题"></a>真题</h3><h4 id="B·三·14-（5-分）简答"><a href="#B·三·14-（5-分）简答" class="headerlink" title="[B·三·14]（5 分）简答"></a>[B·三·14]（5 分）简答</h4><blockquote>
+<p>列出至少四种中间代码表示形式。</p>
+</blockquote>
+<p><strong>答案</strong>：后缀式、三地址码、四元组、三元组、间接三元组、抽象语法树、静态单赋值（SSA）—— 任选 4 种。</p>
+<hr>
+<h4 id="E·二·12-（4-分）多选"><a href="#E·二·12-（4-分）多选" class="headerlink" title="[E·二·12]（4 分）多选"></a>[E·二·12]（4 分）多选</h4><blockquote>
+<p>下列属于代码优化技术的是（ ）<br>A. 常量折叠   B. 公共子表达式消除   C. 循环不变代码外提   D. 死代码消除</p>
+</blockquote>
+<p><strong>解答</strong>：<strong>ABCD 全选</strong>。</p>
+<ul>
+<li>A 常量折叠：编译期算 $3 + 5$ 直接得 8</li>
+<li>B 公共子表达式：$a*b$ 在两处出现，只算一次</li>
+<li>C 循环不变代码外提：循环体内不变的计算挪到循环外</li>
+<li>D 死代码消除：不可达代码或结果未被使用的语句删除</li>
+</ul>
+<hr>
+<h2 id="5-TINY-语言扩展（重点扩展题型）"><a href="#5-TINY-语言扩展（重点扩展题型）" class="headerlink" title="5. TINY 语言扩展（重点扩展题型）"></a>5. TINY 语言扩展（重点扩展题型）</h2><p>TINY 是龙书提到的一个简单教学语言。考题常以”已为 TINY 实现编译器，现要添加 X 特性”的形式给出。</p>
+<h3 id="通用-SOP"><a href="#通用-SOP" class="headerlink" title="通用 SOP"></a>通用 SOP</h3><blockquote>
+<p><strong>Note</strong> 给小语言加新语法的标准流程</p>
+<ol>
+<li><strong>写文法产生式</strong>：用 BNF 描述新语法的语法规则</li>
+<li><strong>影响词法</strong>：是否引入新关键字、新运算符？需要更新词法分析器</li>
+<li><strong>影响语法分析</strong>：在原文法基础上加入新产生式，重算 FIRST&#x2F;FOLLOW 或 LR 项目集，检查冲突</li>
+<li><strong>设计语义</strong>：定义新语法的求值&#x2F;执行含义；类型规则</li>
+<li><strong>设计中间代码模板</strong>：写出新语法对应的四元组或三地址码翻译模板</li>
+<li><strong>测试</strong>：构造典型样例验证</li>
+</ol>
+</blockquote>
+<h3 id="真题-4"><a href="#真题-4" class="headerlink" title="真题"></a>真题</h3><h4 id="B·四·17-（15-分，2020）TINY-加-for-语句"><a href="#B·四·17-（15-分，2020）TINY-加-for-语句" class="headerlink" title="[B·四·17]（15 分，2020）TINY 加 for 语句"></a>[B·四·17]（15 分，2020）TINY 加 for 语句</h4><blockquote>
+<p>已为 TINY 语言构造好 LR(0) 分析表。现在为其加上 <code>for</code> 语句：<br>$\text{for-stmt} \to \text{for}\ \text{id}\ :&#x3D;\ E\ \text{to}\ E\ \text{do}\ \text{stmt-list}\ \text{endfor}$<br>要求：(1) 写出此产生式涉及的新项目；(2) 描述分析表需新增哪些状态；(3) 说明对原有 LR(0) 分析表的影响。</p>
+</blockquote>
+<p><strong>解答</strong>：详见 [04 - LR 分析] 第 5 节”添加新语法到 LR 分析”。</p>
+<hr>
+<h4 id="C·六·19-（15-分，2021）TINY-加-repeat-until"><a href="#C·六·19-（15-分，2021）TINY-加-repeat-until" class="headerlink" title="[C·六·19]（15 分，2021）TINY 加 repeat-until"></a>[C·六·19]（15 分，2021）TINY 加 repeat-until</h4><blockquote>
+<p>为 TINY 加 <code>repeat S until E</code> 语句：<br>(1) 写文法产生式；<br>(2) 给出语义翻译规则（生成四元组）。</p>
+</blockquote>
+<p><strong>解答</strong></p>
+<p><strong>(1) 文法</strong></p>
+<p>$$<br>S \to \text{repeat}\ S_1\ \text{until}\ E<br>$$</p>
+<p><strong>(2) 翻译规则</strong></p>
+<p>repeat-until 与 while 的区别：先执行循环体一次，再判断条件。条件<strong>为假时</strong>继续循环、<strong>为真时</strong>退出。</p>
+<p>引入标记非终结符 $M$（$M \to \varepsilon$，$M.\text{quad} &#x3D; \text{nextquad}$）：</p>
+<p>文法改写：$S \to \text{repeat}\ M\ S_1\ \text{until}\ E$</p>
+<p><strong>语义动作</strong>：</p>
+<ul>
+<li>$\text{backpatch}(E.\text{falselist}, M.\text{quad})$ —— 条件假回到循环体起点</li>
+<li>$\text{backpatch}(S_1.\text{nextlist}, \text{nextquad})$ —— 循环体执行完进入条件判断</li>
+<li>$S.\text{nextlist} &#x3D; E.\text{truelist}$ —— 条件真则退出</li>
+</ul>
+<p><strong>翻译模板</strong>（设循环体起于 $L_1$）：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">L1:    &lt;循环体 S1 的四元组&gt;</span><br><span class="line">       &lt;条件 E 的两条比较四元组&gt;     ← E.truelist 真出口（外部回填）</span><br><span class="line">                                    ← E.falselist 假回到 L1</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例</strong>：<code>repeat x := x + 1 until x &gt; 10</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">(100)  (+, x, 1, t1)        ← M.quad = 100</span><br><span class="line">(101)  (:=, t1, _, x)</span><br><span class="line">(102)  (j&gt;, x, 10, ?)       ← E.truelist = &#123;102&#125;（出口）</span><br><span class="line">(103)  (j, _, _, 100)       ← E.falselist 已回填为 100</span><br></pre></td></tr></table></figure>
+
+<p><strong>E.truelist &#x3D; {102}</strong> 等待外部回填到下一条语句。</p>
+<blockquote>
+<p><strong>Tip</strong> repeat-until 比 while 更”自然”地实现”先执行一次再判断”。在四元组层面，它的循环体直接就在最前面，不需要先跳到条件再跳回来。</p>
+</blockquote>
+<hr>
+<h4 id="D·六·20-（15-分，2022）TINY-加数组"><a href="#D·六·20-（15-分，2022）TINY-加数组" class="headerlink" title="[D·六·20]（15 分，2022）TINY 加数组"></a>[D·六·20]（15 分，2022）TINY 加数组</h4><blockquote>
+<p>为 TINY 加一维数组（声明 + 引用 + 赋值）：<br>(1) 写文法产生式；<br>(2) 设计存储分配方案；<br>(3) 给出 $A[i]$ 引用的中间代码翻译。</p>
+</blockquote>
+<p><strong>解答</strong></p>
+<p><strong>(1) 文法</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">declare → array id [num]              （声明 A[N]）</span><br><span class="line">exp     → id [exp]                    （数组引用 A[i]）</span><br><span class="line">stmt    → id [exp] := exp             （数组元素赋值）</span><br></pre></td></tr></table></figure>
+
+<p><strong>(2) 存储分配</strong></p>
+<p>声明 <code>array A[N]</code>（$N$ 为常量）时：</p>
+<ul>
+<li>在符号表中为 $A$ 分配一个<strong>基址</strong> $\text{base}_A$</li>
+<li>预留 $N \times w$ 字节连续空间（$w$ &#x3D; 单元素字节数）</li>
+<li>符号表记录：$A.\text{type}$ &#x3D; 数组、$A.\text{base}$、$A.\text{size}$ &#x3D; $N$、$A.\text{elemSize}$ &#x3D; $w$</li>
+</ul>
+<p><strong>(3) $A[i]$ 引用的翻译</strong></p>
+<p>设 $A$ 基址 $a_0$，元素 $w$ 字节，$i$ 是表达式（已翻译完，结果在 $t_i$）。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(k)    (*, ti, w, t_offset)         ← 偏移量</span><br><span class="line">(k+1)  (=[], A, t_offset, t_val)   ← 取数组元素：t_val := A[t_offset]</span><br></pre></td></tr></table></figure>
+
+<p>数组<strong>赋值</strong> <code>A[i] := exp</code>（exp 结果在 $t_e$）：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(k)    (*, ti, w, t_offset)</span><br><span class="line">(k+1)  ([]=, t_e, t_offset, A)     ← 数组写入：A[t_offset] := t_e</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>Tip</strong> 四元组中数组的两类专用 op：</p>
+<ul>
+<li><code>=[]</code>：从数组<strong>取</strong>值</li>
+<li><code>[]=</code>：向数组<strong>存</strong>值<br>这种区分是为后续目标代码生成方便，识别出”读”和”写”两种内存访问模式。</li>
+</ul>
+</blockquote>
+<hr>
+<h2 id="6-矩阵连乘等开放题"><a href="#6-矩阵连乘等开放题" class="headerlink" title="6. 矩阵连乘等开放题"></a>6. 矩阵连乘等开放题</h2><p>某些试卷出”看似与编译原理无关、实则考综合素养”的题，比如矩阵连乘最优顺序——其实是测<strong>子树代价分析</strong>（与代码生成阶段的最优指令选择思想一致）。</p>
+<h3 id="矩阵连乘动态规划"><a href="#矩阵连乘动态规划" class="headerlink" title="矩阵连乘动态规划"></a>矩阵连乘动态规划</h3><p>设矩阵 $A_1, A_2, \ldots, A_n$，$A_i$ 大小 $p_{i-1} \times p_i$。求最优乘法顺序。</p>
+<p>DP 方程：$m[i][j] &#x3D; \min_{i \le k &lt; j}{m[i][k] + m[k+1][j] + p_{i-1} p_k p_j}$</p>
+<p>复杂度 $O(n^3)$。</p>
+<h3 id="真题-5"><a href="#真题-5" class="headerlink" title="真题"></a>真题</h3><h4 id="D·六·21-（15-分，2022-流出）矩阵连乘"><a href="#D·六·21-（15-分，2022-流出）矩阵连乘" class="headerlink" title="[D·六·21]（15 分，2022 流出）矩阵连乘"></a>[D·六·21]（15 分，2022 流出）矩阵连乘</h4><blockquote>
+<p>给四个矩阵 $A_1(10\times 30)$，$A_2(30 \times 5)$，$A_3(5 \times 60)$，$A_4(60 \times 8)$，求最优乘法顺序及最少标量乘法次数。</p>
+</blockquote>
+<p><strong>解答</strong></p>
+<p>$p_0&#x3D;10, p_1&#x3D;30, p_2&#x3D;5, p_3&#x3D;60, p_4&#x3D;8$。</p>
+<p>填表 $m[i][j]$（$1 \le i \le j \le 4$）：</p>
+<p><strong>长度 1</strong>（自身，无运算）：<br>$m[1][1] &#x3D; m[2][2] &#x3D; m[3][3] &#x3D; m[4][4] &#x3D; 0$</p>
+<p><strong>长度 2</strong>：</p>
+<ul>
+<li>$m[1][2] &#x3D; p_0 p_1 p_2 &#x3D; 10 \cdot 30 \cdot 5 &#x3D; 1500$</li>
+<li>$m[2][3] &#x3D; p_1 p_2 p_3 &#x3D; 30 \cdot 5 \cdot 60 &#x3D; 9000$</li>
+<li>$m[3][4] &#x3D; p_2 p_3 p_4 &#x3D; 5 \cdot 60 \cdot 8 &#x3D; 2400$</li>
+</ul>
+<p><strong>长度 3</strong>：</p>
+<p>$m[1][3]$：</p>
+<ul>
+<li>$k&#x3D;1$：$m[1][1]+m[2][3]+p_0 p_1 p_3 &#x3D; 0+9000+10\cdot 30\cdot 60 &#x3D; 27000$</li>
+<li>$k&#x3D;2$：$m[1][2]+m[3][3]+p_0 p_2 p_3 &#x3D; 1500+0+10\cdot 5\cdot 60 &#x3D; 4500$</li>
+<li>min &#x3D; $\boxed{4500}$（$k&#x3D;2$，即 $(A_1A_2)A_3$）</li>
+</ul>
+<p>$m[2][4]$：</p>
+<ul>
+<li>$k&#x3D;2$：$m[2][2]+m[3][4]+p_1 p_2 p_4 &#x3D; 0+2400+30\cdot 5\cdot 8 &#x3D; 3600$</li>
+<li>$k&#x3D;3$：$m[2][3]+m[4][4]+p_1 p_3 p_4 &#x3D; 9000+0+30\cdot 60\cdot 8 &#x3D; 23400$</li>
+<li>min &#x3D; $\boxed{3600}$（$k&#x3D;2$，即 $A_2(A_3 A_4)$）</li>
+</ul>
+<p><strong>长度 4</strong>：</p>
+<p>$m[1][4]$：</p>
+<ul>
+<li>$k&#x3D;1$：$m[1][1]+m[2][4]+p_0 p_1 p_4 &#x3D; 0+3600+10\cdot 30\cdot 8 &#x3D; 6000$</li>
+<li>$k&#x3D;2$：$m[1][2]+m[3][4]+p_0 p_2 p_4 &#x3D; 1500+2400+10\cdot 5\cdot 8 &#x3D; 4300$</li>
+<li>$k&#x3D;3$：$m[1][3]+m[4][4]+p_0 p_3 p_4 &#x3D; 4500+0+10\cdot 60\cdot 8 &#x3D; 9300$</li>
+<li>min &#x3D; $\boxed{4300}$（$k&#x3D;2$）</li>
+</ul>
+<p><strong>最优结构</strong>：$k&#x3D;2$ 把 $[1..4]$ 切为 $[1..2]$ 和 $[3..4]$ → $(A_1 A_2)(A_3 A_4)$。</p>
+<p><strong>最少标量乘法</strong>：$\boxed{4300}$ 次。</p>
+<blockquote>
+<p><strong>Tip</strong> 这种题的”编译原理意义”：代码生成时，<strong>表达式树的最优代码生成顺序</strong>（最少寄存器、最少访存）也是类似的子树代价 DP（Sethi-Ullman 算法）。命题人挂这道题就是想让你看出”编译器内部到处是 DP”。</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>上一节 05 - 语义分析与中间代码 | 返回 00 - 索引 | 下一节 99 - 试卷原题汇总</p>
+</blockquote>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://poyais-cloud.github.io">Poyais</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://poyais-cloud.github.io/2026/04/26/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86-06-%E7%BB%BC%E5%90%88%E6%89%A9%E5%B1%95%E9%A2%98/">https://poyais-cloud.github.io/2026/04/26/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86-06-%E7%BB%BC%E5%90%88%E6%89%A9%E5%B1%95%E9%A2%98/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://poyais-cloud.github.io" target="_blank">Hi! I'm Poyais</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/">编译原理</a></div><div class="post-share"><div class="social-share" data-image="/img/avatar.jpg" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2026/04/26/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86-99-%E8%AF%95%E5%8D%B7%E5%8E%9F%E9%A2%98%E6%B1%87%E6%80%BB/" title="编译原理 - 试卷原题汇总"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">编译原理 - 试卷原题汇总</div></div><div class="info-2"><div class="info-item-1"> 返回目录     99 — 试卷原题汇总 上一节 06 - 综合扩展题 | 返回 00 - 索引   A 卷（2019 上半年，网工卷）   题号 题干摘要 所属模块    A·一·1 句子定义判断（开始符号 + 终结符） 02 - 文法构造与等价变换   A·一·4 DFA 与 NFA 关系（识别能力） 01 - 词法分析   A·二·5 静电场与感生电场（混入题，跳过） —   A·二·8 综合属性 vs 继承属性 05 - 语义分析与中间代码   A·二·11 正则表达式 $a(a|b)^*a$ 描述的串集 01 - 词法分析   A·三·14 简述编译过程主要阶段 06 - 综合扩展题   A·三·15 静态类型检查 vs 动态类型检查 05 - 语义分析与中间代码   A·四·17 消左递归（标准算术文法） 02 - 文法构造与等价变换   A·五·18 LL(1) 综合：FIRST&#x2F;FOLLOW + 分析表 03 - 自顶向下分析   A·六·19 表达式翻译为四元组 + SLR(1) 分析过程跟踪 04 - LR 分析、05 - 语义分析与中间代码   ...</div></div></div></a><a class="pagination-related" href="/2026/04/26/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86-05-%E8%AF%AD%E4%B9%89%E5%88%86%E6%9E%90%E4%B8%8E%E4%B8%AD%E9%97%B4%E4%BB%A3%E7%A0%81/" title="编译原理 - 语义分析与中间代码"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">编译原理 - 语义分析与中间代码</div></div><div class="info-2"><div class="info-item-1"> 返回目录     05 — 语义分析与中间代码 上一节 04 - LR 分析 | 返回 00 - 索引 | 下一节 06 - 综合扩展题   1. 语法制导翻译与属性文法关键概念速记 综合属性：节点的属性值由其子节点计算（自底向上） 继承属性：节点的属性值由其父节点或兄弟节点计算（自顶向下或横向） S-属性文法：仅含综合属性 → 可在 LR 分析时同步计算 L-属性文法：综合属性 + 限定形式的继承属性 → 可在 LL 或 LR 分析时计算 语义动作：写在产生式右部某位置的代码片段 {...}，分析到该位置就执行  真题[A·二·8]（3 分）填空 综合属性的值由 ____ 计算得到，继承属性的值由 ____ 计算得到。  答案：子节点（自底向上）；父节点或兄弟节点（自顶向下或横向）  [C·一·6]（3 分）填空 一个属性文法仅含综合属性时，称为 ____ 属性文法。  答案：S-属性文法  2. 三地址码与四元组三地址码的常见形式 赋值：x := y op z，x := op y（一元），x := y 跳转：goto L，if x relop y goto L 过程调用：p...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2026/04/26/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86-02-%E6%96%87%E6%B3%95%E6%9E%84%E9%80%A0%E4%B8%8E%E7%AD%89%E4%BB%B7%E5%8F%98%E6%8D%A2/" title="编译原理 - 文法构造与等价变换"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-04-26</div><div class="info-item-2">编译原理 - 文法构造与等价变换</div></div><div class="info-2"><div class="info-item-1"> 返回目录     02 — 文法构造与等价变换 上一节 01 - 词法分析 | 返回 00 - 索引 | 下一节 03 - 自顶向下分析   1. 上下文无关文法基础概念关键定义速记 文法 $G &#x3D; (V_N, V_T, P, S)$：非终结符集、终结符集、产生式集、开始符号 句子：从 $S$ 出发能推导出的、全由终结符组成的串 句型：从 $S$ 出发能推导出的串（可含非终结符） 最左推导：每步替换最左边的非终结符 最右推导（规范推导）：每步替换最右边的非终结符 二义性文法：存在某个句子有两棵不同的语法树（或等价地，两种不同的最左推导）  真题[A·一·1]（3 分）单选 设文法 $G$ 的开始符号为 $S$，下列关于句子的说法正确的是（ ）A. 由 $S$ 出发推导出的任意串都是句子B. 由 $S$ 出发推导出的全由终结符组成的串才是句子C. 句子可以包含非终结符D. 句子和句型是同一概念  解答：答案 B。句型可含非终结符，句子是句型的子集（仅含终结符的句型）。  [B·一·1]（3 分）填空 文法 $G[S]$ 的句子是指 ____ 出发推导出的、由 ____ ...</div></div></div></a><a class="pagination-related" href="/2026/04/26/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86-04-LR%E5%88%86%E6%9E%90/" title="编译原理 - LR 分析"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-04-26</div><div class="info-item-2">编译原理 - LR 分析</div></div><div class="info-2"><div class="info-item-1"> 返回目录     04 — LR 分析 上一节 03 - 自顶向下分析 | 返回 00 - 索引 | 下一节 05 - 语义分析与中间代码   1. LR 分析总体框架LR 分析器的”五件套” Note 一个 LR 分析器由五部分组成  拓广文法 $G’$：在原文法上加 $S’ \to S$，使得”接受”对应唯一的归约 项目集族（DFA 状态）：每个状态是若干 LR 项目的集合 GOTO 函数：状态间在文法符号上的转移 ACTION 表：状态 × 终结符 → 移进 $s_n$ &#x2F; 归约 $r_n$ &#x2F; 接受 acc &#x2F; 报错 GOTO 表：状态 × 非终结符 → 跳转目标状态   LR(0) &#x2F; SLR(1) &#x2F; LALR(1) &#x2F; LR(1) 区别速记   类型 项目形式 归约时机判定 文法能力    LR(0) $A \to \alpha\cdot\beta$ 见到归约项目就归约（不看输入） 最弱   SLR(1) $A \to \alpha\cdot\beta$ 仅当下一输入 $\in \text{FOLLOW}...</div></div></div></a><a class="pagination-related" href="/2026/04/26/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86-05-%E8%AF%AD%E4%B9%89%E5%88%86%E6%9E%90%E4%B8%8E%E4%B8%AD%E9%97%B4%E4%BB%A3%E7%A0%81/" title="编译原理 - 语义分析与中间代码"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-04-26</div><div class="info-item-2">编译原理 - 语义分析与中间代码</div></div><div class="info-2"><div class="info-item-1"> 返回目录     05 — 语义分析与中间代码 上一节 04 - LR 分析 | 返回 00 - 索引 | 下一节 06 - 综合扩展题   1. 语法制导翻译与属性文法关键概念速记 综合属性：节点的属性值由其子节点计算（自底向上） 继承属性：节点的属性值由其父节点或兄弟节点计算（自顶向下或横向） S-属性文法：仅含综合属性 → 可在 LR 分析时同步计算 L-属性文法：综合属性 + 限定形式的继承属性 → 可在 LL 或 LR 分析时计算 语义动作：写在产生式右部某位置的代码片段 {...}，分析到该位置就执行  真题[A·二·8]（3 分）填空 综合属性的值由 ____ 计算得到，继承属性的值由 ____ 计算得到。  答案：子节点（自底向上）；父节点或兄弟节点（自顶向下或横向）  [C·一·6]（3 分）填空 一个属性文法仅含综合属性时，称为 ____ 属性文法。  答案：S-属性文法  2. 三地址码与四元组三地址码的常见形式 赋值：x := y op z，x := op y（一元），x := y 跳转：goto L，if x relop y goto L 过程调用：p...</div></div></div></a><a class="pagination-related" href="/2026/04/26/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86-03-%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E5%88%86%E6%9E%90/" title="编译原理 - 自顶向下分析"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-04-26</div><div class="info-item-2">编译原理 - 自顶向下分析</div></div><div class="info-2"><div class="info-item-1"> 返回目录     03 — 自顶向下分析 上一节 02 - 文法构造与等价变换 | 返回 00 - 索引 | 下一节 04 - LR 分析   1. FIRST 集SOP Note 求 FIRST 集  终结符：$\text{FIRST}(a) &#x3D; {a}$ 空串：$\text{FIRST}(\varepsilon) &#x3D; {\varepsilon}$ 非终结符 $A$：考察所有 $A \to X_1 X_2 \cdots X_n$ 把 $\text{FIRST}(X_1) \setminus {\varepsilon}$ 加入 $\text{FIRST}(A)$ 若 $\varepsilon \in \text{FIRST}(X_1)$，再把 $\text{FIRST}(X_2) \setminus {\varepsilon}$ 加入；以此类推 若所有 $X_i$ 都能推出 $\varepsilon$，则 $\varepsilon \in \text{FIRST}(A)$   迭代到不动点：所有 $\text{FIRST}$ 集不再变化为止   真题[C·五...</div></div></div></a><a class="pagination-related" href="/2026/04/26/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86-01-%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90/" title="编译原理 - 词法分析"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-04-26</div><div class="info-item-2">编译原理 - 词法分析</div></div><div class="info-2"><div class="info-item-1"> 返回目录     01 — 词法分析 上一节 00 - 索引 | 返回 00 - 索引 | 下一节 02 - 文法构造与等价变换   1. 正则表达式与正则集SOP Note 给定正则式描述其语言（或反向构造）的 SOP  拆解算子优先级：闭包 * &gt; 连接 &gt; 选择 | 逐层翻译：从最外层算子开始，把每一段翻译成自然语言或集合表达 写出几个具体串验证：取最短串、典型串、边界串各一个，看是否在语言中 注意 ε：闭包 $A^*$ 包含空串，$A^+$ 不包含空串   核心结果速记 $a^*$ &#x3D; ${\varepsilon, a, aa, aaa, \ldots}$ $(a|b)^$ &#x3D; ${a,b}^$ &#x3D; 所有由 a、b 组成的串（含空串） $a(a|b)^*$ &#x3D; 以 a 开头、后跟任意 a&#x2F;b 串 $(ab)^*$ &#x3D; ${\varepsilon, ab, abab, \ldots}$ 区分 $a^b^$ 与 $(ab)^*$：前者是”先若干 a 再若干 b”，后者是”ab 段重复”  真题[A·二·...</div></div></div></a><a class="pagination-related" href="/2026/04/26/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86-99-%E8%AF%95%E5%8D%B7%E5%8E%9F%E9%A2%98%E6%B1%87%E6%80%BB/" title="编译原理 - 试卷原题汇总"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-04-26</div><div class="info-item-2">编译原理 - 试卷原题汇总</div></div><div class="info-2"><div class="info-item-1"> 返回目录     99 — 试卷原题汇总 上一节 06 - 综合扩展题 | 返回 00 - 索引   A 卷（2019 上半年，网工卷）   题号 题干摘要 所属模块    A·一·1 句子定义判断（开始符号 + 终结符） 02 - 文法构造与等价变换   A·一·4 DFA 与 NFA 关系（识别能力） 01 - 词法分析   A·二·5 静电场与感生电场（混入题，跳过） —   A·二·8 综合属性 vs 继承属性 05 - 语义分析与中间代码   A·二·11 正则表达式 $a(a|b)^*a$ 描述的串集 01 - 词法分析   A·三·14 简述编译过程主要阶段 06 - 综合扩展题   A·三·15 静态类型检查 vs 动态类型检查 05 - 语义分析与中间代码   A·四·17 消左递归（标准算术文法） 02 - 文法构造与等价变换   A·五·18 LL(1) 综合：FIRST&#x2F;FOLLOW + 分析表 03 - 自顶向下分析   A·六·19 表达式翻译为四元组 + SLR(1) 分析过程跟踪 04 - LR 分析、05 - 语义分析与中间代码   ...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Poyais</div><div class="author-info-description">A personal tech blog by Poyais</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">15</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">20</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#06-%E2%80%94-%E7%BB%BC%E5%90%88%E6%89%A9%E5%B1%95%E9%A2%98"><span class="toc-number">1.</span> <span class="toc-text">06 — 综合扩展题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E7%BC%96%E8%AF%91%E8%BF%87%E7%A8%8B%E6%80%BB%E4%BD%93%E6%B5%81%E7%A8%8B"><span class="toc-number">1.1.</span> <span class="toc-text">1. 编译过程总体流程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%96%E8%AF%91%E5%99%A8%E4%BA%94%E9%98%B6%E6%AE%B5"><span class="toc-number">1.1.1.</span> <span class="toc-text">编译器五阶段</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%84%E9%98%B6%E6%AE%B5%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E5%AF%B9%E7%85%A7"><span class="toc-number">1.1.2.</span> <span class="toc-text">各阶段输入输出对照</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9C%9F%E9%A2%98"><span class="toc-number">1.1.3.</span> <span class="toc-text">真题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#A%C2%B7%E4%B8%89%C2%B714-%EF%BC%885-%E5%88%86%EF%BC%89%E7%AE%80%E7%AD%94"><span class="toc-number">1.1.3.1.</span> <span class="toc-text">[A·三·14]（5 分）简答</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#B%C2%B7%E4%BA%8C%C2%B711-%EF%BC%884-%E5%88%86%EF%BC%89%E5%A4%9A%E9%80%89"><span class="toc-number">1.1.3.2.</span> <span class="toc-text">[B·二·11]（4 分）多选</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E7%BC%96%E8%AF%91-vs-%E8%A7%A3%E9%87%8A"><span class="toc-number">1.2.</span> <span class="toc-text">2. 编译 vs 解释</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8C%BA%E5%88%AB%E9%80%9F%E8%AE%B0"><span class="toc-number">1.2.1.</span> <span class="toc-text">区别速记</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9C%9F%E9%A2%98-1"><span class="toc-number">1.2.2.</span> <span class="toc-text">真题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#C%C2%B7%E4%B8%89%C2%B714-%EF%BC%885-%E5%88%86%EF%BC%89%E7%AE%80%E7%AD%94"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">[C·三·14]（5 分）简答</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E7%AC%A6%E5%8F%B7%E8%A1%A8"><span class="toc-number">1.3.</span> <span class="toc-text">3. 符号表</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%A6%E5%8F%B7%E8%A1%A8%E7%9A%84%E5%8A%9F%E8%83%BD"><span class="toc-number">1.3.1.</span> <span class="toc-text">符号表的功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F"><span class="toc-number">1.3.2.</span> <span class="toc-text">实现方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9C%9F%E9%A2%98-2"><span class="toc-number">1.3.3.</span> <span class="toc-text">真题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#D%C2%B7%E4%B8%80%C2%B75-%EF%BC%883-%E5%88%86%EF%BC%89%E5%8D%95%E9%80%89"><span class="toc-number">1.3.3.1.</span> <span class="toc-text">[D·一·5]（3 分）单选</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E4%B8%AD%E9%97%B4%E4%BB%A3%E7%A0%81%E4%B8%8E%E4%BB%A3%E7%A0%81%E4%BC%98%E5%8C%96"><span class="toc-number">1.4.</span> <span class="toc-text">4. 中间代码与代码优化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%AD%E9%97%B4%E4%BB%A3%E7%A0%81%E5%B8%B8%E8%A7%81%E5%BD%A2%E5%BC%8F"><span class="toc-number">1.4.1.</span> <span class="toc-text">中间代码常见形式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%98%E5%8C%96%E5%B1%82%E6%AC%A1"><span class="toc-number">1.4.2.</span> <span class="toc-text">优化层次</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9C%9F%E9%A2%98-3"><span class="toc-number">1.4.3.</span> <span class="toc-text">真题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#B%C2%B7%E4%B8%89%C2%B714-%EF%BC%885-%E5%88%86%EF%BC%89%E7%AE%80%E7%AD%94"><span class="toc-number">1.4.3.1.</span> <span class="toc-text">[B·三·14]（5 分）简答</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#E%C2%B7%E4%BA%8C%C2%B712-%EF%BC%884-%E5%88%86%EF%BC%89%E5%A4%9A%E9%80%89"><span class="toc-number">1.4.3.2.</span> <span class="toc-text">[E·二·12]（4 分）多选</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-TINY-%E8%AF%AD%E8%A8%80%E6%89%A9%E5%B1%95%EF%BC%88%E9%87%8D%E7%82%B9%E6%89%A9%E5%B1%95%E9%A2%98%E5%9E%8B%EF%BC%89"><span class="toc-number">1.5.</span> <span class="toc-text">5. TINY 语言扩展（重点扩展题型）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9A%E7%94%A8-SOP"><span class="toc-number">1.5.1.</span> <span class="toc-text">通用 SOP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9C%9F%E9%A2%98-4"><span class="toc-number">1.5.2.</span> <span class="toc-text">真题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#B%C2%B7%E5%9B%9B%C2%B717-%EF%BC%8815-%E5%88%86%EF%BC%8C2020%EF%BC%89TINY-%E5%8A%A0-for-%E8%AF%AD%E5%8F%A5"><span class="toc-number">1.5.2.1.</span> <span class="toc-text">[B·四·17]（15 分，2020）TINY 加 for 语句</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#C%C2%B7%E5%85%AD%C2%B719-%EF%BC%8815-%E5%88%86%EF%BC%8C2021%EF%BC%89TINY-%E5%8A%A0-repeat-until"><span class="toc-number">1.5.2.2.</span> <span class="toc-text">[C·六·19]（15 分，2021）TINY 加 repeat-until</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#D%C2%B7%E5%85%AD%C2%B720-%EF%BC%8815-%E5%88%86%EF%BC%8C2022%EF%BC%89TINY-%E5%8A%A0%E6%95%B0%E7%BB%84"><span class="toc-number">1.5.2.3.</span> <span class="toc-text">[D·六·20]（15 分，2022）TINY 加数组</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E7%9F%A9%E9%98%B5%E8%BF%9E%E4%B9%98%E7%AD%89%E5%BC%80%E6%94%BE%E9%A2%98"><span class="toc-number">1.6.</span> <span class="toc-text">6. 矩阵连乘等开放题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9F%A9%E9%98%B5%E8%BF%9E%E4%B9%98%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92"><span class="toc-number">1.6.1.</span> <span class="toc-text">矩阵连乘动态规划</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9C%9F%E9%A2%98-5"><span class="toc-number">1.6.2.</span> <span class="toc-text">真题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#D%C2%B7%E5%85%AD%C2%B721-%EF%BC%8815-%E5%88%86%EF%BC%8C2022-%E6%B5%81%E5%87%BA%EF%BC%89%E7%9F%A9%E9%98%B5%E8%BF%9E%E4%B9%98"><span class="toc-number">1.6.2.1.</span> <span class="toc-text">[D·六·21]（15 分，2022 流出）矩阵连乘</span></a></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/05/07/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E5%A4%84%E7%90%86%E5%99%A8%E7%AE%A1%E7%90%86/" title="操作系统-处理器管理">操作系统-处理器管理</a><time datetime="2026-05-07T07:35:00.000Z" title="发表于 2026-05-07 15:35:00">2026-05-07</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/27/%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%86-%E7%94%B5%E7%A3%81%E6%84%9F%E5%BA%94/" title="大学物理 - 电磁感应">大学物理 - 电磁感应</a><time datetime="2026-04-26T16:18:00.000Z" title="发表于 2026-04-27 00:18:00">2026-04-27</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/27/%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%86-%E7%A8%B3%E6%81%92%E7%A3%81%E5%9C%BA/" title="大学物理 - 稳恒磁场">大学物理 - 稳恒磁场</a><time datetime="2026-04-26T16:18:00.000Z" title="发表于 2026-04-27 00:18:00">2026-04-27</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/27/%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%86-%E5%8A%9B%E5%AD%A6/" title="大学物理 - 力学">大学物理 - 力学</a><time datetime="2026-04-26T16:18:00.000Z" title="发表于 2026-04-27 00:18:00">2026-04-27</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/27/%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%86-%E9%9D%99%E7%94%B5%E5%9C%BA/" title="大学物理 - 静电场">大学物理 - 静电场</a><time datetime="2026-04-26T16:18:00.000Z" title="发表于 2026-04-27 00:18:00">2026-04-27</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(/img/site-bg.jpg);"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2026 By Poyais</span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.3"></script><script src="/js/main.js?v=5.5.3"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        loader: {
+          load: [
+            // Four font extension packages (optional)
+            //- '[tex]/bbm',
+            //- '[tex]/bboldx',
+            //- '[tex]/dsfont',
+            '[tex]/mhchem'
+          ],
+          paths: {
+            'mathjax-newcm': '[mathjax]/../@mathjax/mathjax-newcm-font',
+
+            //- // Four font extension packages (optional)
+            //- 'mathjax-bbm-extension': '[mathjax]/../@mathjax/mathjax-bbm-font-extension',
+            //- 'mathjax-bboldx-extension': '[mathjax]/../@mathjax/mathjax-bboldx-font-extension',
+            //- 'mathjax-dsfont-extension': '[mathjax]/../@mathjax/mathjax-dsfont-font-extension',
+            'mathjax-mhchem-extension': '[mathjax]/../@mathjax/mathjax-mhchem-font-extension'
+          }
+        },
+        output: {
+          font: 'mathjax-newcm',
+        },
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'all',
+          packages: {
+            '[+]': [
+              'mhchem'
+            ]
+          }
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          menuOptions: {
+            settings: {
+              enrich: false  // Turn off Braille and voice narration text automatic generation
+            }
+          },
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script></div><script>
+(function() {
+  // 雨滴效果
+  var rainContainer = document.createElement('div');
+  rainContainer.className = 'rain-container';
+  for (var i = 0; i < 25; i++) {
+    var drop = document.createElement('div');
+    drop.className = 'rain-drop';
+    rainContainer.appendChild(drop);
+  }
+  document.body.appendChild(rainContainer);
+
+  // 公告栏内容
+  var announcementWidget = document.querySelector('.card-announcement');
+  var defaultAnnouncement = '<div class="announcement_content">🌧️ 公告栏<br><small>点击右下角阅读模式按钮可关闭雨滴效果</small></div>';
+  var focusAnnouncement = '<div class="announcement_content">🌧️ 雨已停，专注阅读中...<br><small>退出阅读模式可恢复雨滴</small></div>';
+
+  function updateRainState() {
+    var isFocusMode = document.body.classList.contains('read-mode');
+    if (isFocusMode) {
+      rainContainer.classList.add('hidden');
+      if (announcementWidget) {
+        announcementWidget.innerHTML = focusAnnouncement;
+      }
+    } else {
+      rainContainer.classList.remove('hidden');
+      if (announcementWidget) {
+        announcementWidget.innerHTML = defaultAnnouncement;
+      }
+    }
+  }
+
+  // 监听所有可能的阅读模式切换按钮
+  document.addEventListener('click', function(e) {
+    var target = e.target;
+    // 检查是否点击了阅读模式相关按钮
+    if (target.closest('.console-btn-item') ||
+        target.closest('.aside-toggle') ||
+        target.closest('[data-type="read"]') ||
+        target.closest('.fa-book-open') ||
+        target.closest('.read-mode-btn')) {
+      setTimeout(updateRainState, 150);
+    }
+  });
+
+  // MutationObserver 监听 body class 变化
+  var observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+      if (mutation.attributeName === 'class') {
+        updateRainState();
+      }
+    });
+  });
+  observer.observe(document.body, { attributes: true });
+
+  // 初始化
+  setTimeout(function() {
+    updateRainState();
+  }, 500);
+
+  // 水波纹点击效果
+  document.addEventListener('click', function(e) {
+    var ripple = document.createElement('div');
+    ripple.style.cssText = 'position:fixed;left:' + e.clientX + 'px;top:' + e.clientY + 'px;width:0;height:0;border-radius:50%;background:rgba(90,143,106,0.3);pointer-events:none;transform:translate(-50%,-50%);animation:ripple 0.6s ease-out forwards;z-index:9998;';
+    document.body.appendChild(ripple);
+    setTimeout(function() { ripple.remove(); }, 600);
+  });
+
+  // 添加水波纹动画
+  var style = document.createElement('style');
+  style.textContent = '@keyframes ripple{to{width:150px;height:150px;opacity:0;}}';
+  document.head.appendChild(style);
+})();
+</script>
+<script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

@@ -1,0 +1,467 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Hi! I'm Poyais - 但盼风雨来，能留你此地</title><meta name="author" content="Poyais"><meta name="copyright" content="Poyais"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="A personal tech blog by Poyais">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Hi! I&#39;m Poyais">
+<meta property="og:url" content="https://poyais-cloud.github.io/index.html">
+<meta property="og:site_name" content="Hi! I&#39;m Poyais">
+<meta property="og:description" content="A personal tech blog by Poyais">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://poyais-cloud.github.io/img/avatar.jpg">
+<meta property="article:author" content="Poyais">
+<meta property="article:tag" content="programming, drawing, technology, coding, development">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://poyais-cloud.github.io/img/avatar.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Hi! I'm Poyais",
+  "alternateName": [
+    "但盼风雨来，能留你此地",
+    "poyais-cloud.github.io"
+  ],
+  "url": "https://poyais-cloud.github.io/"
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://poyais-cloud.github.io/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.3"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          const mediaQueryDark = window.matchMedia('(prefers-color-scheme: dark)')
+          const mediaQueryLight = window.matchMedia('(prefers-color-scheme: light)')
+
+          if (theme === undefined) {
+            if (mediaQueryLight.matches) activateLightMode()
+            else if (mediaQueryDark.matches) activateDarkMode()
+            else {
+              const hour = new Date().getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            mediaQueryDark.addEventListener('change', () => {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else {
+            theme === 'light' ? activateLightMode() : activateDarkMode()
+          }
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Hi! I\'m Poyais',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'home'
+}</script><style>
+/* 主色调 - 清浅绿色 */
+:root {
+  --theme-color: #5a8f6a;
+  --theme-color-light: #7ab08a;
+  --theme-color-dark: #4a7f5a;
+}
+
+/* 链接颜色 */
+a {
+  color: #5a8f6a;
+  transition: all 0.3s ease;
+}
+a:hover {
+  color: #4a7f5a;
+}
+
+/* 导航栏玻璃效果 */
+#nav {
+  background: rgba(255, 255, 255, 0.6) !important;
+  backdrop-filter: blur(10px);
+}
+#nav a {
+  color: #4a7f5a !important;
+}
+#nav a:hover {
+  color: #5a8f6a !important;
+}
+
+/* 顶部图底部渐变过渡 */
+#page-header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.9));
+  pointer-events: none;
+}
+
+/* 网站背景半透明 */
+#web_bg {
+  opacity: 0.4 !important;
+}
+
+/* 页脚保留背景图，添加玻璃效果 */
+#footer {
+  background-color: rgba(255, 255, 255, 0.5) !important;
+  backdrop-filter: blur(10px);
+}
+
+/* 文章卡片玻璃效果 */
+.recent-post-item {
+  background: rgba(255, 255, 255, 0.7) !important;
+  backdrop-filter: blur(8px);
+  border-radius: 12px;
+  border: 1px solid rgba(90, 143, 106, 0.2);
+}
+.recent-post-item:hover {
+  border-color: rgba(90, 143, 106, 0.4);
+}
+
+/* 侧边栏卡片玻璃效果 */
+#aside-content .card-widget {
+  background: rgba(255, 255, 255, 0.7) !important;
+  backdrop-filter: blur(8px);
+  border-radius: 10px;
+  border: 1px solid rgba(90, 143, 106, 0.2);
+}
+
+/* 标签颜色 */
+.tag, .category a {
+  background: rgba(90, 143, 106, 0.15) !important;
+  color: #5a8f6a !important;
+}
+.tag:hover, .category a:hover {
+  background: rgba(90, 143, 106, 0.3) !important;
+}
+
+/* 雨滴动效 */
+.rain-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  overflow: hidden;
+  transition: opacity 0.5s ease;
+}
+
+/* 专注模式下隐藏雨滴 */
+.rain-container.hidden {
+  opacity: 0;
+}
+
+.rain-drop {
+  position: absolute;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, rgba(120, 170, 220, 0.5));
+  animation: rain-fall linear infinite;
+  opacity: 0;
+}
+
+@keyframes rain-fall {
+  0% { transform: translateY(-30px); opacity: 0; }
+  10% { opacity: 0.6; }
+  90% { opacity: 0.6; }
+  100% { transform: translateY(100vh); opacity: 0; }
+}
+
+/* 随机分布的雨滴 - 更细更错落 */
+.rain-drop:nth-child(1) { left: 3.2%; height: 18px; animation-duration: 1.7s; animation-delay: 0.05s; }
+.rain-drop:nth-child(2) { left: 7.8%; height: 25px; animation-duration: 1.9s; animation-delay: 0.35s; }
+.rain-drop:nth-child(3) { left: 11.5%; height: 15px; animation-duration: 1.5s; animation-delay: 0.62s; }
+.rain-drop:nth-child(4) { left: 16.3%; height: 22px; animation-duration: 2.1s; animation-delay: 0.18s; }
+.rain-drop:nth-child(5) { left: 21.7%; height: 28px; animation-duration: 1.8s; animation-delay: 0.44s; }
+.rain-drop:nth-child(6) { left: 26.1%; height: 12px; animation-duration: 1.6s; animation-delay: 0.77s; }
+.rain-drop:nth-child(7) { left: 31.4%; height: 20px; animation-duration: 2.0s; animation-delay: 0.28s; }
+.rain-drop:nth-child(8) { left: 35.9%; height: 16px; animation-duration: 1.65s; animation-delay: 0.53s; }
+.rain-drop:nth-child(9) { left: 40.2%; height: 24px; animation-duration: 2.05s; animation-delay: 0.12s; }
+.rain-drop:nth-child(10) { left: 45.6%; height: 19px; animation-duration: 1.55s; animation-delay: 0.68s; }
+.rain-drop:nth-child(11) { left: 50.3%; height: 26px; animation-duration: 1.85s; animation-delay: 0.22s; }
+.rain-drop:nth-child(12) { left: 55.8%; height: 14px; animation-duration: 1.72s; animation-delay: 0.58s; }
+.rain-drop:nth-child(13) { left: 61.2%; height: 30px; animation-duration: 2.15s; animation-delay: 0.08s; }
+.rain-drop:nth-child(14) { left: 66.5%; height: 17px; animation-duration: 1.62s; animation-delay: 0.65s; }
+.rain-drop:nth-child(15) { left: 71.9%; height: 23px; animation-duration: 1.92s; animation-delay: 0.38s; }
+.rain-drop:nth-child(16) { left: 76.4%; height: 21px; animation-duration: 1.98s; animation-delay: 0.15s; }
+.rain-drop:nth-child(17) { left: 82.1%; height: 13px; animation-duration: 1.52s; animation-delay: 0.72s; }
+.rain-drop:nth-child(18) { left: 87.3%; height: 27px; animation-duration: 1.88s; animation-delay: 0.42s; }
+.rain-drop:nth-child(19) { left: 92.6%; height: 18px; animation-duration: 1.68s; animation-delay: 0.33s; }
+.rain-drop:nth-child(20) { left: 96.8%; height: 20px; animation-duration: 1.78s; animation-delay: 0.25s; }
+.rain-drop:nth-child(21) { left: 1.5%; height: 11px; animation-duration: 1.45s; animation-delay: 0.85s; }
+.rain-drop:nth-child(22) { left: 13.7%; height: 29px; animation-duration: 2.08s; animation-delay: 0.03s; }
+.rain-drop:nth-child(23) { left: 24.9%; height: 10px; animation-duration: 1.42s; animation-delay: 0.91s; }
+.rain-drop:nth-child(24) { left: 38.1%; height: 32px; animation-duration: 2.2s; animation-delay: 0.07s; }
+.rain-drop:nth-child(25) { left: 52.7%; height: 8px; animation-duration: 1.38s; animation-delay: 0.96s; }
+</style>
+<meta name="generator" content="Hexo 8.1.1"></head><body><div class="bg-animation" id="web_bg" style="background-image: url(/img/site-bg.jpg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">15</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">20</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/notes/"><i class="fa-fw fas fa-book"></i><span> 期末复习</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url(/img/top-bg.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Hi! I'm Poyais</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/notes/"><i class="fa-fw fas fa-book"></i><span> 期末复习</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="site-info"><h1 id="site-title">Hi! I'm Poyais</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts nc" id="recent-posts"><div class="recent-post-items"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/05/07/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E5%A4%84%E7%90%86%E5%99%A8%E7%AE%A1%E7%90%86/" title="操作系统-处理器管理">操作系统-处理器管理</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-05-07T07:35:00.000Z" title="发表于 2026-05-07 15:35:00">2026-05-07</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a></span></div><div class="content">第二章 处理器管理 前情提要第一章我们学了操作系统的总体结构——它是用户与硬件之间的资源管理者。本章把”资源”具体化为最重要的那一种：CPU（处理器），并引出整门 OS 课最核心的对象：进程。后面第三章讲存储管理、第四章讲设备管理、第五章讲文件系统，但调度、互斥、同步、死锁这些”并发问题”会一直伴随到整门课结束。本章是 OS 全课的脊梁。   本章统一类比：自习室模型为便于理解，本章使用自习室类比贯穿始终：    OS 概念 自习室类比    CPU 单人间自习室（一次只能一人用）   进程 自习室名额（资源拥有者）   单线程进程 名额里只有一个人   多线程进程 名额里多个人共用（挤在一起）   线程 自习室里的人（实际执行者）   资源 笔、黑板、座位等   PCB 学生的档案袋（记录学到哪了）   就绪队列 排队等自习室的学生   等待队列 等笔、等座位的学生   信号量 笔筒（S &#x3D; 笔的数量）   P 操作 借笔，没笔就等   V 操作 还笔，有人等就通知   时间片 每人最多用 10 分钟   临界区 用黑板的那段时间   互斥 一次只能一人用黑板   死...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/04/27/%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%86-%E7%94%B5%E7%A3%81%E6%84%9F%E5%BA%94/" title="大学物理 - 电磁感应">大学物理 - 电磁感应</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-04-26T16:18:00.000Z" title="发表于 2026-04-27 00:18:00">2026-04-27</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/SCNU%E6%9C%9F%E6%9C%AB%E8%AF%95%E5%8D%B7/">SCNU期末试卷</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/SCNU%E6%9C%9F%E6%9C%AB%E8%AF%95%E5%8D%B7/%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%86/">大学物理</a></span></div><div class="content"> 返回目录    04 — 电磁感应 上一节 [[03 - 稳恒磁场]] | 返回 [[00 - 索引]] | 下一节 [[99 - 试卷原题汇总]]   1. 法拉第电磁感应定律 + Lenz 定律SOP [!note] 求感应电动势 SOP  算磁通量 $\Phi(t) &#x3D; \int_S \vec B\cdot d\vec S$ 注意 $\vec B$ 不均匀时要积分 选定回路法向方向（决定 Φ 正负）   求 EMF 大小：$|\varepsilon| &#x3D; \left|\dfrac{d\Phi}{dt}\right|$ 判方向（Lenz 定律）：感应电流产生的 B 反抗 Φ 的变化 Φ 增大 → 感应 B 反向（反抗） Φ 减小 → 感应 B 同向（试图维持） 用右手定则反求电流方向     三大成因区分   成因 公式 例子    仅 B 变（回路不动） $\varepsilon &#x3D; -\int \dfrac{\partial \vec B}{\partial t}\cdot d\vec S$ 螺线管中电流变化诱发感应   仅回路动（B 不变...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/04/27/%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%86-%E7%A8%B3%E6%81%92%E7%A3%81%E5%9C%BA/" title="大学物理 - 稳恒磁场">大学物理 - 稳恒磁场</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-04-26T16:18:00.000Z" title="发表于 2026-04-27 00:18:00">2026-04-27</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/SCNU%E6%9C%9F%E6%9C%AB%E8%AF%95%E5%8D%B7/">SCNU期末试卷</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/SCNU%E6%9C%9F%E6%9C%AB%E8%AF%95%E5%8D%B7/%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%86/">大学物理</a></span></div><div class="content"> 返回目录    03 — 稳恒磁场 上一节 [[02 - 静电场]] | 返回 [[00 - 索引]] | 下一节 [[04 - 电磁感应]]   1. 毕奥–萨伐尔定律（B-S Law）SOP [!note] 求磁感强度 B 的积分流程  取电流元 $Id\vec l$，标方向（沿电流方向） 写微元 B：$d\vec B &#x3D; \dfrac{\mu_0}{4\pi}\dfrac{Id\vec l \times \hat r}{r^2}$ 判方向：用右手定则（拇指 dl 方向，四指 r 方向，掌心推 dB 方向） 积分：注意分量分解（与对称性）   速记结果（考试就考这几个） 有限长直导线（端点对场点张角 θ₁、θ₂，距离 a）：$$B &#x3D; \dfrac{\mu_0 I}{4\pi a}(\cos\theta_1 - \cos\theta_2)$$ 无限长直导线：$B &#x3D; \dfrac{\mu_0 I}{2\pi a}$ 半无限长（端点正下方）：$B &#x3D; \dfrac{\mu_0 I}{4\pi a}$ 圆环（半径 R）轴线上距中心 z：$...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/04/27/%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%86-%E5%8A%9B%E5%AD%A6/" title="大学物理 - 力学">大学物理 - 力学</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-04-26T16:18:00.000Z" title="发表于 2026-04-27 00:18:00">2026-04-27</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/SCNU%E6%9C%9F%E6%9C%AB%E8%AF%95%E5%8D%B7/">SCNU期末试卷</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/SCNU%E6%9C%9F%E6%9C%AB%E8%AF%95%E5%8D%B7/%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%86/">大学物理</a></span></div><div class="content"> 返回目录    01 — 力学 返回 [[00 - 索引]]   1. 质点运动学SOP [!note] 已知 → 求 流程  已知 r(t) → v = dr/dt → a = dv/dt 已知 a(t) 与初值 → v = v₀ + ∫a dt → r = r₀ + ∫v dt 已知 F → a = F/m，再走上面流程 轨迹方程：从 x(t)、y(t) 中消去 t   核心公式 位矢 $\vec r(t) &#x3D; x(t),\hat i + y(t),\hat j$ 速度 $\vec v &#x3D; \dfrac{d\vec r}{dt}$，加速度 $\vec a &#x3D; \dfrac{d\vec v}{dt}$ 一维直线 $a &#x3D; \dfrac{dv}{dt} &#x3D; v\dfrac{dv}{dx}$（变力题最常考的链式法则）  真题[A·一·1]（3 分） 已知质点运动方程 $\vec r &#x3D; (8+12t-5t^2)\hat i + (3-15t+3t^3)\hat j$，求 $t&#x3D;1\text{ s}$ 时的加速度...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/04/27/%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%86-%E9%9D%99%E7%94%B5%E5%9C%BA/" title="大学物理 - 静电场">大学物理 - 静电场</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-04-26T16:18:00.000Z" title="发表于 2026-04-27 00:18:00">2026-04-27</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/SCNU%E6%9C%9F%E6%9C%AB%E8%AF%95%E5%8D%B7/">SCNU期末试卷</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/SCNU%E6%9C%9F%E6%9C%AB%E8%AF%95%E5%8D%B7/%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%86/">大学物理</a></span></div><div class="content"> 返回目录    02 — 静电场 上一节 [[01 - 力学]] | 返回 [[00 - 索引]] | 下一节 [[03 - 稳恒磁场]]   1. 库仑定律与点电荷叠加SOP [!note]  标出所有点电荷及目标点 P 写出每个点电荷在 P 处的 $\vec E_i$（注意符号 → 方向沿连线远离正电荷、指向负电荷） 矢量叠加 $\vec E_P &#x3D; \sum \vec E_i$（按分量求和，不是大小相加） 求电势：$U_P &#x3D; \sum \dfrac{kq_i}{r_i}$（标量代数和，含符号）   核心公式 点电荷场强 $E &#x3D; \dfrac{1}{4\pi\varepsilon_0}\dfrac{q}{r^2}$，方向沿连线 电势 $U &#x3D; \dfrac{1}{4\pi\varepsilon_0}\dfrac{q}{r}$（无穷远为零势） $k &#x3D; \dfrac{1}{4\pi\varepsilon_0} \approx 9\times 10^9$ N·m²&#x2F;C²  真题[B·二·9]（4 分）双选 B、C ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/04/27/%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%86-%E8%AF%95%E5%8D%B7%E5%8E%9F%E9%A2%98%E6%B1%87%E6%80%BB/" title="大学物理 - 试卷原题汇总">大学物理 - 试卷原题汇总</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-04-26T16:18:00.000Z" title="发表于 2026-04-27 00:18:00">2026-04-27</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/SCNU%E6%9C%9F%E6%9C%AB%E8%AF%95%E5%8D%B7/">SCNU期末试卷</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/SCNU%E6%9C%9F%E6%9C%AB%E8%AF%95%E5%8D%B7/%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%86/">大学物理</a></span></div><div class="content"> 返回目录    99 — 试卷原题汇总（按试卷顺序） 上一节 [[04 - 电磁感应]] | 返回 [[00 - 索引]]  按试卷顺序列出每一题，并标注所属知识模块。可在对应模块文件中用题号（如 [A·一·1]）快速定位完整解答。  2019–2020 A卷（生命科学&#x2F;计科）一、单项选择题（每题 3 分）   题号 题干摘要 模块    [A·一·1] $\vec r &#x3D; (8+12t-5t^2)\hat i + (3-15t+3t^3)\hat j$，求 $t&#x3D;1$ s 加速度 [[01 - 力学]] · 质点运动学   [A·一·2] $\vec F&#x3D;(3t^2+2t)\hat i$，2 s 内冲量 [[01 - 力学]] · 动量与冲量   [A·一·3] 圆环均匀带电 Q，圆心 O 的 E 与 U [[02 - 静电场]] · 连续电荷分布   [A·一·4] 闭合面 S 内有 q1，外 q2 移动 → P 点 E 与 Φ 变化 [[02 - 静电场]] · 高斯定理   [A·一·5] 电流元在 P(d,0,0)、Q(0,d,...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/04/27/Hexo%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2%E5%B7%A5%E4%BD%9C%E6%B5%81/" title="Hexo博客部署完整工作流">Hexo博客部署完整工作流</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-04-26T16:00:00.000Z" title="发表于 2026-04-27 00:00:00">2026-04-27</time></span></div><div class="content">Hexo博客部署完整工作流一、文章规范Front Matter必须包含123456---title: 文章标题date: 2026-04-27 00:18:00tags: [标签1, 标签2]categories: [分类1, 分类2]---  缺少字段会导致：首页显示”无标题”、分类失效 二、部署命令（完整版）123456789# 1. 生成静态文件cd ~/my-bloghexo clean &amp;&amp; hexo generate# 2. 推送到GitHub Pagescd publicgit init &amp;&amp; git add -A &amp;&amp; git commit -m &quot;更新博客&quot;git remote add origin https://github.com/Poyais-cloud/Poyais-cloud.github.io.gitgit push origin main:master --force  关键点：推送到 master 分支（不是 main） 三、验证部署12# 等待60秒后检查sleep 60 &...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/04/26/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86-99-%E8%AF%95%E5%8D%B7%E5%8E%9F%E9%A2%98%E6%B1%87%E6%80%BB/" title="编译原理 - 试卷原题汇总">编译原理 - 试卷原题汇总</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-04-26T15:59:00.000Z" title="发表于 2026-04-26 23:59:00">2026-04-26</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/SCNU%E6%9C%9F%E6%9C%AB%E8%AF%95%E5%8D%B7/">SCNU期末试卷</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/SCNU%E6%9C%9F%E6%9C%AB%E8%AF%95%E5%8D%B7/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/">编译原理</a></span></div><div class="content"> 返回目录     99 — 试卷原题汇总 上一节 06 - 综合扩展题 | 返回 00 - 索引   A 卷（2019 上半年，网工卷）   题号 题干摘要 所属模块    A·一·1 句子定义判断（开始符号 + 终结符） 02 - 文法构造与等价变换   A·一·4 DFA 与 NFA 关系（识别能力） 01 - 词法分析   A·二·5 静电场与感生电场（混入题，跳过） —   A·二·8 综合属性 vs 继承属性 05 - 语义分析与中间代码   A·二·11 正则表达式 $a(a|b)^*a$ 描述的串集 01 - 词法分析   A·三·14 简述编译过程主要阶段 06 - 综合扩展题   A·三·15 静态类型检查 vs 动态类型检查 05 - 语义分析与中间代码   A·四·17 消左递归（标准算术文法） 02 - 文法构造与等价变换   A·五·18 LL(1) 综合：FIRST&#x2F;FOLLOW + 分析表 03 - 自顶向下分析   A·六·19 表达式翻译为四元组 + SLR(1) 分析过程跟踪 04 - LR 分析、05 - 语义分析与中间代码   ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/04/26/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86-06-%E7%BB%BC%E5%90%88%E6%89%A9%E5%B1%95%E9%A2%98/" title="编译原理 - 综合扩展题">编译原理 - 综合扩展题</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-04-25T22:00:00.000Z" title="发表于 2026-04-26 06:00:00">2026-04-26</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/SCNU%E6%9C%9F%E6%9C%AB%E8%AF%95%E5%8D%B7/">SCNU期末试卷</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/SCNU%E6%9C%9F%E6%9C%AB%E8%AF%95%E5%8D%B7/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/">编译原理</a></span></div><div class="content"> 返回目录     06 — 综合扩展题 上一节 05 - 语义分析与中间代码 | 返回 00 - 索引 | 下一节 99 - 试卷原题汇总   本节归集跨模块的综合题与开放题，命题人通常用这些题目检测系统性理解能力。常见类型：  已实现的小语言（如 TINY）扩展新语法 编译器各阶段功能比较与流程梳理 给出场景要求设计文法 + 语义动作 + 中间代码生成 编译期 vs 解释期、前端 vs 后端的概念辨析   1. 编译过程总体流程编译器五阶段 Note 编译器经典流水线  词法分析（Lexical Analysis）：字符流 → 单词流（token stream） 语法分析（Syntax Analysis）：单词流 → 语法树（AST） 语义分析（Semantic Analysis）：语法树 + 符号表 → 带类型注解的语法树 中间代码生成（IR Generation）：语法树 → 三地址码 &#x2F; 四元组等 代码优化 + 目标代码生成：中间代码 → 优化后中间代码 → 汇编&#x2F;机器码   各阶段输入输出对照   阶段 输入 输出 关键技术    词法 字符流 单...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/04/26/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86-05-%E8%AF%AD%E4%B9%89%E5%88%86%E6%9E%90%E4%B8%8E%E4%B8%AD%E9%97%B4%E4%BB%A3%E7%A0%81/" title="编译原理 - 语义分析与中间代码">编译原理 - 语义分析与中间代码</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-04-25T21:00:00.000Z" title="发表于 2026-04-26 05:00:00">2026-04-26</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/SCNU%E6%9C%9F%E6%9C%AB%E8%AF%95%E5%8D%B7/">SCNU期末试卷</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/SCNU%E6%9C%9F%E6%9C%AB%E8%AF%95%E5%8D%B7/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/">编译原理</a></span></div><div class="content"> 返回目录     05 — 语义分析与中间代码 上一节 04 - LR 分析 | 返回 00 - 索引 | 下一节 06 - 综合扩展题   1. 语法制导翻译与属性文法关键概念速记 综合属性：节点的属性值由其子节点计算（自底向上） 继承属性：节点的属性值由其父节点或兄弟节点计算（自顶向下或横向） S-属性文法：仅含综合属性 → 可在 LR 分析时同步计算 L-属性文法：综合属性 + 限定形式的继承属性 → 可在 LL 或 LR 分析时计算 语义动作：写在产生式右部某位置的代码片段 {...}，分析到该位置就执行  真题[A·二·8]（3 分）填空 综合属性的值由 ____ 计算得到，继承属性的值由 ____ 计算得到。  答案：子节点（自底向上）；父节点或兄弟节点（自顶向下或横向）  [C·一·6]（3 分）填空 一个属性文法仅含综合属性时，称为 ____ 属性文法。  答案：S-属性文法  2. 三地址码与四元组三地址码的常见形式 赋值：x := y op z，x := op y（一元），x := y 跳转：goto L，if x relop y goto L 过程调用：p...</div></div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span><a class="page-number" href="/page/2/#content-inner">2</a><a class="extend next" rel="next" href="/page/2/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Poyais</div><div class="author-info-description">A personal tech blog by Poyais</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">15</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">20</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/05/07/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E5%A4%84%E7%90%86%E5%99%A8%E7%AE%A1%E7%90%86/" title="操作系统-处理器管理">操作系统-处理器管理</a><time datetime="2026-05-07T07:35:00.000Z" title="发表于 2026-05-07 15:35:00">2026-05-07</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/27/%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%86-%E7%94%B5%E7%A3%81%E6%84%9F%E5%BA%94/" title="大学物理 - 电磁感应">大学物理 - 电磁感应</a><time datetime="2026-04-26T16:18:00.000Z" title="发表于 2026-04-27 00:18:00">2026-04-27</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/27/%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%86-%E7%A8%B3%E6%81%92%E7%A3%81%E5%9C%BA/" title="大学物理 - 稳恒磁场">大学物理 - 稳恒磁场</a><time datetime="2026-04-26T16:18:00.000Z" title="发表于 2026-04-27 00:18:00">2026-04-27</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/27/%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%86-%E5%8A%9B%E5%AD%A6/" title="大学物理 - 力学">大学物理 - 力学</a><time datetime="2026-04-26T16:18:00.000Z" title="发表于 2026-04-27 00:18:00">2026-04-27</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/27/%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%86-%E9%9D%99%E7%94%B5%E5%9C%BA/" title="大学物理 - 静电场">大学物理 - 静电场</a><time datetime="2026-04-26T16:18:00.000Z" title="发表于 2026-04-27 00:18:00">2026-04-27</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            
+          </div>
+          <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/SCNU%E6%9C%9F%E6%9C%AB%E8%AF%95%E5%8D%B7/"><span class="card-category-list-name">SCNU期末试卷</span><span class="card-category-list-count">12</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/SCNU%E6%9C%9F%E6%9C%AB%E8%AF%95%E5%8D%B7/%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%86/"><span class="card-category-list-name">大学物理</span><span class="card-category-list-count">5</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/SCNU%E6%9C%9F%E6%9C%AB%E8%AF%95%E5%8D%B7/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/"><span class="card-category-list-name">编译原理</span><span class="card-category-list-count">7</span></a></li></ul></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/"><span class="card-category-list-name">前端面试</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"><span class="card-category-list-name">操作系统</span><span class="card-category-list-count">1</span></a></li>
+          </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/%E5%8A%9B%E5%AD%A6/" style="font-size: 1.1em; color: #999">力学</a> <a href="/tags/JavaScript/" style="font-size: 1.1em; color: #999">JavaScript</a> <a href="/tags/%E7%94%B5%E7%A3%81%E6%84%9F%E5%BA%94/" style="font-size: 1.1em; color: #999">电磁感应</a> <a href="/tags/%E6%AD%BB%E9%94%81/" style="font-size: 1.1em; color: #999">死锁</a> <a href="/tags/Hexo/" style="font-size: 1.1em; color: #999">Hexo</a> <a href="/tags/%E5%A4%8D%E4%B9%A0/" style="font-size: 1.1em; color: #999">复习</a> <a href="/tags/%E5%BC%82%E6%AD%A5/" style="font-size: 1.1em; color: #999">异步</a> <a href="/tags/%E7%A8%B3%E6%81%92%E7%A3%81%E5%9C%BA/" style="font-size: 1.1em; color: #999">稳恒磁场</a> <a href="/tags/%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/" style="font-size: 1.1em; color: #999">事件循环</a> <a href="/tags/%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%86/" style="font-size: 1.3em; color: #99a1ac">大学物理</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 1.1em; color: #999">操作系统</a> <a href="/tags/%E8%BF%9B%E7%A8%8B/" style="font-size: 1.1em; color: #999">进程</a> <a href="/tags/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/" style="font-size: 1.1em; color: #999">前端面试</a> <a href="/tags/%E5%A4%84%E7%90%86%E5%99%A8%E7%AE%A1%E7%90%86/" style="font-size: 1.1em; color: #999">处理器管理</a> <a href="/tags/%E9%9D%99%E7%94%B5%E5%9C%BA/" style="font-size: 1.1em; color: #999">静电场</a> <a href="/tags/%E8%AF%95%E5%8D%B7%E7%B4%A2%E5%BC%95/" style="font-size: 1.1em; color: #999">试卷索引</a> <a href="/tags/%E5%8D%9A%E5%AE%A2/" style="font-size: 1.1em; color: #999">博客</a> <a href="/tags/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/" style="font-size: 1.5em; color: #99a9bf">编译原理</a> <a href="/tags/%E9%83%A8%E7%BD%B2/" style="font-size: 1.1em; color: #999">部署</a> <a href="/tags/%E7%BA%BF%E7%A8%8B/" style="font-size: 1.1em; color: #999">线程</a></div></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>归档</span>
+      
+    </div>
+  
+    <ul class="card-archive-list">
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2026/05/">
+            <span class="card-archive-list-date">
+              五月 2026
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2026/04/">
+            <span class="card-archive-list-date">
+              四月 2026
+            </span>
+            <span class="card-archive-list-count">14</span>
+          </a>
+        </li>
+      
+    </ul>
+  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">15</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总浏览量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2026-05-07T07:39:23.096Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(/img/site-bg.jpg);"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2026 By Poyais</span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.3"></script><script src="/js/main.js?v=5.5.3"></script><div class="js-pjax"><script>window.typedJSFn = {
+  init: str => {
+    window.typed = new Typed('#subtitle', Object.assign({
+      strings: str,
+      startDelay: 300,
+      typeSpeed: 150,
+      loop: true,
+      backSpeed: 50,
+    }, {"typeSpeed":80,"backSpeed":40,"backDelay":1000,"loop":true}))
+  },
+  run: subtitleType => {
+    if (true) {
+      if (typeof Typed === 'function') {
+        subtitleType()
+      } else {
+        btf.getScript('https://cdn.jsdelivr.net/npm/typed.js@2.1.0/dist/typed.umd.min.js').then(subtitleType)
+      }
+    } else {
+      subtitleType()
+    }
+  },
+  processSubtitle: (content, extraContents = []) => {
+    if (true) {
+      const sub = ["隐约雷鸣，阴霾天空，但盼风雨来，能留你此地","鳴る神の、少し響みて、さざめく雨、来ぬかと待てば、此処に留めむ"].slice()
+
+      if (extraContents.length > 0) {
+        sub.unshift(...extraContents)
+      }
+
+      if (typeof content === 'string') {
+        sub.unshift(content)
+      } else if (Array.isArray(content)) {
+        sub.unshift(...content)
+      }
+
+      sub.length > 0 && typedJSFn.init(sub)
+    } else {
+      document.getElementById('subtitle').textContent = typeof content === 'string' ? content :
+        (Array.isArray(content) && content.length > 0 ? content[0] : '')
+    }
+  }
+}
+btf.addGlobalFn('pjaxSendOnce', () => { typed.destroy() }, 'typedDestroy')
+</script><script>function subtitleType () {
+  typedJSFn.processSubtitle(["隐约雷鸣，阴霾天空，但盼风雨来，能留你此地","鳴る神の、少し響みて、さざめく雨、来ぬかと待てば、此処に留めむ"])
+}
+typedJSFn.run(subtitleType)</script></div><script>
+(function() {
+  // 雨滴效果
+  var rainContainer = document.createElement('div');
+  rainContainer.className = 'rain-container';
+  for (var i = 0; i < 25; i++) {
+    var drop = document.createElement('div');
+    drop.className = 'rain-drop';
+    rainContainer.appendChild(drop);
+  }
+  document.body.appendChild(rainContainer);
+
+  // 公告栏内容
+  var announcementWidget = document.querySelector('.card-announcement');
+  var defaultAnnouncement = '<div class="announcement_content">🌧️ 公告栏<br><small>点击右下角阅读模式按钮可关闭雨滴效果</small></div>';
+  var focusAnnouncement = '<div class="announcement_content">🌧️ 雨已停，专注阅读中...<br><small>退出阅读模式可恢复雨滴</small></div>';
+
+  function updateRainState() {
+    var isFocusMode = document.body.classList.contains('read-mode');
+    if (isFocusMode) {
+      rainContainer.classList.add('hidden');
+      if (announcementWidget) {
+        announcementWidget.innerHTML = focusAnnouncement;
+      }
+    } else {
+      rainContainer.classList.remove('hidden');
+      if (announcementWidget) {
+        announcementWidget.innerHTML = defaultAnnouncement;
+      }
+    }
+  }
+
+  // 监听所有可能的阅读模式切换按钮
+  document.addEventListener('click', function(e) {
+    var target = e.target;
+    // 检查是否点击了阅读模式相关按钮
+    if (target.closest('.console-btn-item') ||
+        target.closest('.aside-toggle') ||
+        target.closest('[data-type="read"]') ||
+        target.closest('.fa-book-open') ||
+        target.closest('.read-mode-btn')) {
+      setTimeout(updateRainState, 150);
+    }
+  });
+
+  // MutationObserver 监听 body class 变化
+  var observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+      if (mutation.attributeName === 'class') {
+        updateRainState();
+      }
+    });
+  });
+  observer.observe(document.body, { attributes: true });
+
+  // 初始化
+  setTimeout(function() {
+    updateRainState();
+  }, 500);
+
+  // 水波纹点击效果
+  document.addEventListener('click', function(e) {
+    var ripple = document.createElement('div');
+    ripple.style.cssText = 'position:fixed;left:' + e.clientX + 'px;top:' + e.clientY + 'px;width:0;height:0;border-radius:50%;background:rgba(90,143,106,0.3);pointer-events:none;transform:translate(-50%,-50%);animation:ripple 0.6s ease-out forwards;z-index:9998;';
+    document.body.appendChild(ripple);
+    setTimeout(function() { ripple.remove(); }, 600);
+  });
+
+  // 添加水波纹动画
+  var style = document.createElement('style');
+  style.textContent = '@keyframes ripple{to{width:150px;height:150px;opacity:0;}}';
+  document.head.appendChild(style);
+})();
+</script>
+<script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
