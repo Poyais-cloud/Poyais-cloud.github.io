@@ -355,6 +355,60 @@ git push origin source
 
 不要直接删除 `master/2026/.../index.html`。那是结果，不是源头。
 
+## 坑十三：没有把工作流写成 AI 能复用的 Skill
+
+这次还有一个很重要的收获：很多混乱不是因为 AI 不会做，而是因为每次都要重新解释上下文。
+
+比如我每次都要告诉 AI：
+
+```text
+这个仓库是 Hexo
+source 是源码
+master 是生成结果
+绿色 UI 不能丢
+_drafts 是草稿
+_posts 是正式文章
+不要 git add .
+不要乱改 /Users/poyais/my-blog
+```
+
+这些东西如果只存在聊天记录里，下次换一个窗口、换一个 AI、换一次上下文，就可能又丢掉。
+
+所以 Skill 的意义是：把「这个项目特有的操作规则」写成一份 AI 可以主动读取的说明。
+
+这次我新增了一个本地插件和 skill：
+
+```text
+plugins/blog-knowledge-base/
+plugins/blog-knowledge-base/skills/blog-workflow/SKILL.md
+.agents/plugins/marketplace.json
+```
+
+它不是 Obsidian 插件，而是给 AI 用的博客知识库插件。
+
+这个 skill 里面写清楚了：
+
+```text
+1. 只在 /Users/poyais/my-blog-source 工作
+2. source 是源码分支
+3. master 是 GitHub Pages 成品分支
+4. 发布文章要从 _drafts 移到 _posts
+5. 构建前后要检查 npm run build 和 git status
+6. 绿色 UI 在 custom-green.css / custom-green.js
+7. 不要把无关改动一起提交
+8. 不要直接修改生成后的 HTML
+```
+
+这对我来说很关键，因为博客不是一个单纯的 Markdown 文件夹，而是一个包含写作、主题、构建、部署、分支关系的工作流。Skill 就像是给 AI 的项目说明书，能减少每次重新解释，也能降低误删 UI、推错分支、提交错文件的风险。
+
+以后如果我要让 AI 帮我发博客，可以直接说：
+
+```text
+请先按 blog-workflow skill 检查这个博客仓库，然后帮我发布这篇文章。
+```
+
+这样 AI 应该先理解规则，再做动作。
+
 ## 日常最短流程
 
 写新文章：

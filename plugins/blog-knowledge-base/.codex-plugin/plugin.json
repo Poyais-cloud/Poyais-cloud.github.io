@@ -1,0 +1,39 @@
+{
+  "name": "blog-knowledge-base",
+  "version": "1.0.0",
+  "description": "AI helper for the Poyais Hexo blog source workflow.",
+  "author": {
+    "name": "Poyais"
+  },
+  "homepage": "https://poyais-cloud.github.io/",
+  "repository": "https://github.com/Poyais-cloud/Poyais-cloud.github.io",
+  "license": "MIT",
+  "keywords": [
+    "hexo",
+    "blog",
+    "github-pages",
+    "obsidian",
+    "butterfly"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Poyais Blog Knowledge Base",
+    "shortDescription": "AI instructions for publishing and maintaining the blog.",
+    "longDescription": "A local plugin that teaches AI assistants how to work with the Poyais Hexo blog source, drafts, posts, deployment flow, and green UI customizations.",
+    "developerName": "Poyais",
+    "category": "Productivity",
+    "capabilities": [
+      "Interactive",
+      "Write"
+    ],
+    "websiteURL": "https://poyais-cloud.github.io/",
+    "privacyPolicyURL": "https://poyais-cloud.github.io/",
+    "termsOfServiceURL": "https://poyais-cloud.github.io/",
+    "defaultPrompt": [
+      "Help me write, preview, and publish a Hexo blog post.",
+      "Explain the source/master branch model and safe Git workflow for this blog.",
+      "Review blog changes and avoid touching generated master output."
+    ],
+    "brandColor": "#2f7d32"
+  }
+}
