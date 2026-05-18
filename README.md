@@ -78,13 +78,17 @@ npm run preview
 npm run deploy
 ```
 
-发布后把源码同步到 GitHub：
+现在已经配置 GitHub Actions。通常只需要把源码推到 `source`，
+GitHub 会自动生成并更新 `master`：
 
 ```bash
 git add .
 git commit -m "Update blog source"
 git push origin source
 ```
+
+手动 `npm run deploy` 仍然可用，但日常优先使用 `git push origin source`
+触发自动部署。
 
 ## 从 Obsidian 导入文章
 
