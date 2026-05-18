@@ -1,4 +1,6 @@
 {
+  "name": "my-blog",
+  "private": true,
   "scripts": {
     "build": "hexo clean && hexo generate",
     "preview": "npm run build && http-server public -p 4000",
