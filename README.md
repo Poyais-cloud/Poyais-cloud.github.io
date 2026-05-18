@@ -1,180 +1,162 @@
-# Poyais Blog 使用说明
+# Poyais Blog 发布工作流
 
-这份 README 是日常发布博客时看的。只记一个目录：
+这是给自己看的操作说明。日常只进这个目录：
 
 ```bash
 cd /Users/poyais/my-blog-source
 ```
 
-不要在 `/Users/poyais/my-blog` 里写文章。那里是线上网站生成结果。
+不要在 `/Users/poyais/my-blog` 写文章。那里是线上网站生成结果。
 
-## 目录关系
-
-```text
-/Users/poyais/my-blog-source
-  source/_posts/   已发布文章的 Markdown
-  source/_drafts/  草稿，不会发布
-  source/img/      博客图片
-  templates/       Front Matter 模板
-  tools/           辅助脚本
-
-/Users/poyais/my-blog
-  线上成品 HTML/CSS/JS
-  不手改
-```
-
-## 在 Obsidian 里编辑
-
-可以把这个目录作为一个单独的 Obsidian Vault 打开：
+## 你只需要记住
 
 ```text
-/Users/poyais/my-blog-source
+source/_drafts/类型/  = 草稿，不发布
+source/_posts/类型/   = 正式文章，会发布
+
+push 到 source 分支 = GitHub Actions 自动更新博客
+master 分支 = 机器生成的网站成品，不手改
 ```
 
-推荐只编辑：
+## 目录
 
 ```text
 source/_drafts/
+  blog/
+  clawtime/
+  compiler/
+  frontend/
+  math/
+  os/
+  physics/
+
 source/_posts/
-README.md
-BLOG_AUTHORING_GUIDE.md
+  blog/
+  clawtime/
+  compiler/
+  frontend/
+  math/
+  os/
+  physics/
+
+templates/   文章表头模板
+tools/       Obsidian 导入脚本
+source/img/  博客图片
 ```
 
-新建文章默认放草稿：
+## 从 Obsidian 导入一篇文章
+
+例子：
+
+```bash
+npm run import:obsidian -- --file "/Users/poyais/Poyais的知识库/05-前端面试REVIEW/01 - 前端面试-JavaScript核心.md" --type frontend
+```
+
+可用类型：
 
 ```text
-source/_drafts/
-```
-
-图片附件默认放：
-
-```text
-source/img/
-```
-
-## 最常用命令
-
-看会发布哪些文章：
-
-```bash
-npm run posts
-```
-
-看草稿：
-
-```bash
-npm run drafts
-```
-
-本地预览，不发布：
-
-```bash
-npm run preview
-```
-
-确认没问题后发布：
-
-```bash
-npm run deploy
-```
-
-现在已经配置 GitHub Actions。通常只需要把源码推到 `source`，
-GitHub 会自动生成并更新 `master`：
-
-```bash
-git add .
-git commit -m "Update blog source"
-git push origin source
-```
-
-手动 `npm run deploy` 仍然可用，但日常优先使用 `git push origin source`
-触发自动部署。
-
-## 从 Obsidian 导入文章
-
-先导入成草稿：
-
-```bash
-npm run import:obsidian -- --file "/你的Obsidian文章路径.md" --type frontend
-```
-
-类型目前可以选这些：
-
-```text
+frontend
+math
 clawtime
 compiler
 physics
 os
-frontend
-math
 blog
 ```
 
-导入后文章会出现在：
+导入后会进入：
 
 ```text
 source/_drafts/对应类型/
 ```
 
-预览：
+## 直接新建博客草稿
+
+在 Obsidian 打开这个 Vault：
+
+```text
+/Users/poyais/my-blog-source
+```
+
+新文件放进对应草稿目录，例如：
+
+```text
+source/_drafts/frontend/我的文章.md
+source/_drafts/math/我的数学文章.md
+```
+
+文章开头必须有 front matter。可以复制：
+
+```text
+templates/frontend.md
+templates/math.md
+templates/clawtime.md
+templates/compiler.md
+templates/physics.md
+```
+
+## 预览
 
 ```bash
 npm run preview
 ```
 
-确认要发布时，把文件从：
+打开：
 
 ```text
-source/_drafts/对应类型/
+http://localhost:4000/
 ```
 
-移动到：
+## 发布新文章
+
+1. 把文章从草稿移动到正式目录：
 
 ```text
-source/_posts/对应类型/
+source/_drafts/frontend/我的文章.md
+        ↓
+source/_posts/frontend/我的文章.md
 ```
 
-建议按主题放到对应子文件夹：
-
-```text
-source/_posts/clawtime/
-source/_posts/frontend/
-source/_posts/compiler/
-source/_posts/physics/
-source/_posts/os/
-source/_posts/math/
-source/_posts/blog/
-```
-
-注意：源码文件可以分文件夹，但文章 URL 由 front matter 里的
-`permalink` 固定。不要为了改文件夹而改线上链接。
-
-然后：
+2. 检查会发布哪些文章：
 
 ```bash
 npm run posts
-npm run deploy
-git add .
+```
+
+3. 提交到 source：
+
+```bash
+git status
+git add source/_posts/对应类型/文章.md
 git commit -m "Publish new post"
 git push origin source
 ```
 
-## 修改已发布文章
-
-只改 `source/_posts/` 里的 Markdown。
-
-例如：
+推送后 GitHub Actions 会自动：
 
 ```text
-source/_posts/clawtime-01-hunter.md
+npm run build
+生成 public/
+推送到 master
+更新 https://poyais-cloud.github.io/
 ```
 
-改完：
+不需要手动 `npm run deploy`。
+
+## 修改已发布文章
+
+只改：
+
+```text
+source/_posts/对应类型/文章.md
+```
+
+然后：
 
 ```bash
 npm run preview
-npm run deploy
-git add .
+git status
+git add source/_posts/对应类型/文章.md
 git commit -m "Update post"
 git push origin source
 ```
@@ -185,66 +167,118 @@ git push origin source
 /Users/poyais/my-blog/2026/...
 ```
 
-那里是生成后的 HTML，下次发布会被覆盖。
+那里是生成后的 HTML，下次自动部署会覆盖。
 
-## 分类规则
+## 新增分类
 
-`categories` 是书架，`tags` 是标签。
+如果只是手动写文章，新增两个文件夹即可：
 
-常用分类：
+```bash
+mkdir -p source/_drafts/ai source/_posts/ai
+```
+
+文章 front matter 自己写：
 
 ```yaml
-# ClawTime
-categories:
-  - [ClawTime, 2026-广州南沙]
+---
+title: AI文章标题
+date: 2026-05-18 10:30:00
+permalink: 2026/05/18/ai-title/
 tags:
-  - ClawTime
-
-# 编译原理
+  - AI
 categories:
-  - [SCNU期末试卷, 编译原理]
-tags:
-  - 编译原理
+  - AI实践
+cover: false
+top_img: false
+---
+```
 
-# 大学物理
-categories:
-  - [SCNU期末试卷, 大学物理]
-tags:
-  - 大学物理
-  - 力学
+如果想支持：
 
-# 前端
+```bash
+--type ai
+```
+
+再改：
+
+```text
+tools/import-obsidian-post.mjs
+templates/ai.md
+README.md
+BLOG_AUTHORING_GUIDE.md
+```
+
+## 分类和标签
+
+```text
+categories = 书架
+tags       = 关键词
+```
+
+例子：
+
+```yaml
 categories:
   - 前端面试
 tags:
   - JavaScript
   - 前端面试
-
-# 数学
-categories:
-  - 数学
-tags:
-  - 数学
 ```
-
-## 主题结构
-
-博客仍然使用 Butterfly：
 
 ```yaml
-theme: butterfly
+categories:
+  - [SCNU期末试卷, 编译原理]
+tags:
+  - 编译原理
 ```
 
-绿色 UI 在这里：
+## Obsidian 双链
+
+草稿阶段可以用：
+
+```markdown
+[[双链]]
+![[图片.png]]
+```
+
+发布前，重要链接建议改成标准 Markdown：
+
+```markdown
+[显示文字](/目标路径/)
+![图片说明](/img/example.png)
+```
+
+## 主题
+
+博客使用：
+
+```text
+Hexo + Butterfly + 自定义绿色 UI
+```
+
+绿色 UI 在：
 
 ```text
 source/css/custom-green.css
 source/js/custom-green.js
 ```
 
-主题配置在这里：
+主题配置在：
 
 ```text
 _config.yml
 _config.butterfly.yml
+```
+
+## 最短流程
+
+```text
+写到 _drafts
+预览
+移到 _posts
+git status
+git add 这次要发布的文件
+git commit
+git push origin source
+自动上线
 ```

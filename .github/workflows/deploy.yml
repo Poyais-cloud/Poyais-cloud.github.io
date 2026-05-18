@@ -36,7 +36,9 @@ jobs:
         run: npm run build
 
       - name: Add GitHub Pages marker
-        run: touch public/.nojekyll
+        run: |
+          touch public/.nojekyll
+          cp VISITOR_README.md public/README.md
 
       - name: Publish to master
         env:
