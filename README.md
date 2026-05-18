@@ -94,7 +94,7 @@ git push origin source
 npm run import:obsidian -- --file "/你的Obsidian文章路径.md" --type frontend
 ```
 
-类型只能选这些：
+类型目前可以选这些：
 
 ```text
 clawtime
@@ -102,13 +102,14 @@ compiler
 physics
 os
 frontend
+math
 blog
 ```
 
 导入后文章会出现在：
 
 ```text
-source/_drafts/
+source/_drafts/对应类型/
 ```
 
 预览：
@@ -120,14 +121,29 @@ npm run preview
 确认要发布时，把文件从：
 
 ```text
-source/_drafts/
+source/_drafts/对应类型/
 ```
 
 移动到：
 
 ```text
-source/_posts/
+source/_posts/对应类型/
 ```
+
+建议按主题放到对应子文件夹：
+
+```text
+source/_posts/clawtime/
+source/_posts/frontend/
+source/_posts/compiler/
+source/_posts/physics/
+source/_posts/os/
+source/_posts/math/
+source/_posts/blog/
+```
+
+注意：源码文件可以分文件夹，但文章 URL 由 front matter 里的
+`permalink` 固定。不要为了改文件夹而改线上链接。
 
 然后：
 
@@ -199,6 +215,12 @@ categories:
 tags:
   - JavaScript
   - 前端面试
+
+# 数学
+categories:
+  - 数学
+tags:
+  - 数学
 ```
 
 ## 主题结构

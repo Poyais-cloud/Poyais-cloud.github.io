@@ -4,12 +4,14 @@ import path from 'node:path';
 
 const TYPES = {
   clawtime: {
+    folder: 'clawtime',
     tags: ['ClawTime'],
     categories: [['ClawTime', '2026-广州南沙']],
     cover: false,
     top_img: false,
   },
   compiler: {
+    folder: 'compiler',
     tags: ['编译原理'],
     categories: [['SCNU期末试卷', '编译原理']],
     mathjax: true,
@@ -17,6 +19,7 @@ const TYPES = {
     top_img: '/img/compiler-top.jpg',
   },
   physics: {
+    folder: 'physics',
     tags: ['大学物理'],
     categories: [['SCNU期末试卷', '大学物理']],
     mathjax: true,
@@ -24,18 +27,29 @@ const TYPES = {
     top_img: '/img/physics-top.jpg',
   },
   os: {
+    folder: 'os',
     tags: ['操作系统'],
     categories: ['操作系统'],
     cover: false,
     top_img: false,
   },
   frontend: {
+    folder: 'frontend',
     tags: ['前端面试'],
     categories: ['前端面试'],
     cover: false,
     top_img: false,
   },
+  math: {
+    folder: 'math',
+    tags: ['数学'],
+    categories: ['数学'],
+    mathjax: true,
+    cover: false,
+    top_img: false,
+  },
   blog: {
+    folder: 'blog',
     tags: ['博客', 'Hexo'],
     categories: ['博客维护'],
     cover: false,
@@ -85,11 +99,17 @@ function yamlList(values, indent = 2) {
     .join('\n');
 }
 
-function frontMatter({ title, typeConfig, date }) {
+function permalinkFor(date, slug) {
+  const [day] = date.split(' ');
+  return `${day.replaceAll('-', '/')}/${slug}/`;
+}
+
+function frontMatter({ title, typeConfig, date, slug }) {
   const lines = [
     '---',
     `title: ${title}`,
     `date: ${date}`,
+    `permalink: ${permalinkFor(date, slug)}`,
     'tags:',
     yamlList(typeConfig.tags),
     'categories:',
@@ -139,8 +159,9 @@ const sourcePath = path.resolve(args.file);
 const raw = fs.readFileSync(sourcePath, 'utf8');
 const body = stripFrontMatter(raw);
 const title = args.title || path.basename(sourcePath, path.extname(sourcePath));
-const targetDir = args.publish ? 'source/_posts' : 'source/_drafts';
+const targetDir = path.join(args.publish ? 'source/_posts' : 'source/_drafts', typeConfig.folder);
 const targetPath = path.join(process.cwd(), targetDir, `${slugify(title)}.md`);
+fs.mkdirSync(path.join(process.cwd(), targetDir), { recursive: true });
 
 if (fs.existsSync(targetPath) && !args.overwrite) {
   console.error(`Refusing to overwrite existing file: ${targetPath}`);
@@ -148,7 +169,9 @@ if (fs.existsSync(targetPath) && !args.overwrite) {
   process.exit(1);
 }
 
-const output = `${frontMatter({ title, typeConfig, date: nowString() })}${body}`;
+const date = nowString();
+const slug = slugify(title);
+const output = `${frontMatter({ title, typeConfig, date, slug })}${body}`;
 fs.writeFileSync(targetPath, output);
 
 console.log(`Imported: ${targetPath}`);

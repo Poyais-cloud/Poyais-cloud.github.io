@@ -1,6 +1,7 @@
 ---
 title: ClawTime 01 — 鲸鱼哥 Hunter：你不是在用模型，你是在和一种智能打交道
 date: 2026-05-17 23:00:00
+permalink: 2026/05/17/clawtime-01-hunter/
 tags:
   - ClawTime
 categories:

@@ -1,6 +1,7 @@
 ---
 title: Hexo博客部署完整工作流
 date: 2026-04-27
+permalink: 2026/04/27/Hexo博客部署工作流/
 tags: [博客, Hexo, 部署]
 ---
 

@@ -1,6 +1,7 @@
 ---
 title: JavaScript事件循环详解：宏任务与微任务执行顺序
 date: 2026-04-25 20:20:00
+permalink: 2026/04/25/JavaScript事件循环详解/
 tags:
   - JavaScript
   - 事件循环

@@ -5,3 +5,5 @@ public/
 db.json
 *.log
 source/video/*.mp4
+.obsidian/workspace.json
+.obsidian/core-plugins.json

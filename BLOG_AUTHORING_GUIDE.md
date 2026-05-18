@@ -42,6 +42,10 @@ What topics does this article touch?
 
 One post should normally have one category path and two to five tags.
 
+Post files can be grouped in subfolders under `source/_posts`, but public URLs
+should be fixed with `permalink` in front matter. Folder organization is for
+editing convenience; `categories` and `permalink` control the website.
+
 ## Category Map
 
 Use this fixed map unless you intentionally add a new long-term topic.
@@ -53,6 +57,7 @@ Use this fixed map unless you intentionally add a new long-term topic.
 | 大学物理 | `[SCNU期末试卷, 大学物理]` | `大学物理`, chapter tag | `/img/physics-top.jpg` |
 | 操作系统 | `操作系统` | `操作系统`, chapter tag | `false` |
 | 前端 | `前端面试` | `JavaScript`, `前端面试`, specific tags | `false` |
+| 数学 | `数学` | `数学`, specific tags | `false` |
 | 博客维护 | `博客维护` | `博客`, `Hexo`, `部署` | `false` |
 
 ## Front Matter Templates
@@ -178,11 +183,12 @@ compiler
 physics
 os
 frontend
+math
 blog
 ```
 
 The command creates a draft by default. Review it, then move it from
-`source/_drafts` to `source/_posts` when ready.
+`source/_drafts/<type>` to `source/_posts/<type>` when ready.
 
 Reusable front matter templates also live in:
 
