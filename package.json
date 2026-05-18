@@ -6,7 +6,8 @@
     "preview": "npm run build && http-server public -p 4000",
     "deploy": "npm run build && hexo deploy",
     "posts": "find source/_posts -maxdepth 1 -type f -name '*.md' | sort",
-    "drafts": "find source/_drafts -maxdepth 1 -type f -name '*.md' | sort"
+    "drafts": "find source/_drafts -maxdepth 1 -type f -name '*.md' | sort",
+    "import:obsidian": "node tools/import-obsidian-post.mjs"
   },
   "dependencies": {
     "hexo": "^8.1.2",
