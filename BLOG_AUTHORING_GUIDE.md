@@ -202,3 +202,54 @@ Publish only after checking:
 npm run posts
 npm run deploy
 ```
+
+## Obsidian Syntax Compatibility
+
+Obsidian features are useful while writing, but not all of them render cleanly
+on Hexo.
+
+Safe for blog posts:
+
+```text
+# headings
+normal Markdown links: [title](/path/)
+normal Markdown images: ![alt](/img/name.png)
+tables
+code blocks
+LaTeX when `mathjax: true` is enabled
+```
+
+Use with care:
+
+```text
+[[double links]]
+![[embedded notes]]
+![[image.png]]
+callouts like [!note]
+tags written as #tag inside text
+```
+
+Recommended rule:
+
+```text
+Obsidian private notes can use full Obsidian syntax.
+Blog posts should use standard Markdown as much as possible.
+```
+
+For a public blog post, prefer:
+
+```markdown
+[编译原理目录](/notes/compiler/)
+![图片说明](/img/example.png)
+```
+
+instead of:
+
+```markdown
+[[编译原理目录]]
+![[example.png]]
+```
+
+Double links are still fine inside drafts while writing. Before publishing,
+replace important double links with normal Markdown links so readers can click
+them on the website.

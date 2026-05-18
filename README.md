@@ -23,6 +23,35 @@ cd /Users/poyais/my-blog-source
   不手改
 ```
 
+## 在 Obsidian 里编辑
+
+可以把这个目录作为一个单独的 Obsidian Vault 打开：
+
+```text
+/Users/poyais/my-blog-source
+```
+
+推荐只编辑：
+
+```text
+source/_drafts/
+source/_posts/
+README.md
+BLOG_AUTHORING_GUIDE.md
+```
+
+新建文章默认放草稿：
+
+```text
+source/_drafts/
+```
+
+图片附件默认放：
+
+```text
+source/img/
+```
+
 ## 最常用命令
 
 看会发布哪些文章：
@@ -193,4 +222,3 @@ source/js/custom-green.js
 _config.yml
 _config.butterfly.yml
 ```
-

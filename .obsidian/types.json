@@ -1,0 +1,11 @@
+{
+  "types": {
+    "md": "markdown",
+    "css": "ignore",
+    "js": "ignore",
+    "json": "ignore",
+    "yml": "ignore",
+    "yaml": "ignore",
+    "html": "ignore"
+  }
+}
