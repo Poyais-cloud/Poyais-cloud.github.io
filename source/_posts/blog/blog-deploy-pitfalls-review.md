@@ -436,6 +436,191 @@ plugins/blog-knowledge-base/skills/blog-workflow/SKILL.md
 6. git push origin source
 ```
 
+## 附录：这套博客里最常用的 Git 命令
+
+我不需要记住所有 Git 命令，只需要把博客发布会用到的几类命令分清楚。
+
+### 看当前状态
+
+```bash
+git status
+```
+
+它会告诉我：
+
+```text
+哪些文件改了
+哪些文件是新增的
+哪些文件已经进入暂存区
+当前在哪个分支
+有没有落后或领先远程分支
+```
+
+更简洁的版本：
+
+```bash
+git status --short --branch
+```
+
+我最应该先跑的是这个命令，因为它能防止我把无关文件一起提交。
+
+### 看当前分支
+
+```bash
+git branch --show-current
+```
+
+正常应该看到：
+
+```text
+source
+```
+
+如果不是 `source`，先停下来，不要继续发布。
+
+### 看最近提交
+
+```bash
+git log --oneline -5
+```
+
+它能看到最近 5 次提交，用来判断我上一次到底提交了什么。
+
+### 看某个文件具体改了什么
+
+```bash
+git diff -- source/_posts/blog/blog-deploy-pitfalls-review.md
+```
+
+如果想看所有未暂存改动：
+
+```bash
+git diff
+```
+
+如果想看已经 `git add` 进去、准备提交的内容：
+
+```bash
+git diff --staged
+```
+
+### 把文件放进本次提交
+
+推荐精确 add：
+
+```bash
+git add source/_posts/blog/blog-deploy-pitfalls-review.md
+```
+
+如果文章配了图片，再加图片：
+
+```bash
+git add source/_posts/blog/example.md source/img/example.png
+```
+
+不推荐在这个博客仓库里随手用：
+
+```bash
+git add .
+```
+
+因为它会把当前目录下所有改动都加入提交，包括 Obsidian 配置、模板改动、误删文件等。
+
+### 如果不小心 git add . 了
+
+只撤回暂存，不删除文件内容：
+
+```bash
+git restore --staged .
+```
+
+然后重新只 add 目标文件：
+
+```bash
+git add source/_posts/blog/example.md
+```
+
+### 提交
+
+```bash
+git commit -m "Update blog deploy pitfalls review"
+```
+
+commit message 不需要很复杂，但要能看懂这次做了什么：
+
+```text
+Publish xxx
+Update xxx
+Fix xxx
+Add xxx
+```
+
+### 推送到 GitHub
+
+```bash
+git push origin source
+```
+
+这一步会触发 GitHub Actions，自动生成并更新 `master`。
+
+不要把源码推到 `main`，也不要手动改 `master`。
+
+### 拉取远程更新
+
+如果 GitHub 上已经有新提交，本地想同步：
+
+```bash
+git pull origin source
+```
+
+做这一步前也应该先：
+
+```bash
+git status
+```
+
+如果本地有未提交改动，先确认这些改动要不要保留。
+
+### 撤回一个文件的本地改动
+
+这个命令会丢弃某个文件的本地修改：
+
+```bash
+git restore path/to/file
+```
+
+所以要谨慎用。只有我明确知道这个文件的改动不要了，才使用。
+
+例如如果我确定不想保留模板改动，才可以：
+
+```bash
+git restore templates/compiler.md
+```
+
+### 查看某个文件是否已经被 Git 跟踪
+
+```bash
+git ls-files source/_posts/blog/blog-deploy-pitfalls-review.md
+```
+
+如果有输出，说明它已经被 Git 跟踪。  
+如果没有输出，说明它是新文件，需要 `git add` 后才会进入版本历史。
+
+### 发布一篇文章的完整 Git 流程
+
+```bash
+cd /Users/poyais/my-blog-source
+git status --short --branch
+npm run build
+git diff -- source/_posts/blog/example.md
+git add source/_posts/blog/example.md
+git diff --staged
+git commit -m "Publish example post"
+git push origin source
+```
+
+这套流程的重点不是命令多，而是每一步都知道自己在提交什么。
+
 ## 现在对这个博客系统的理解
 
 博客不是一个文件夹，而是一条流水线，workflow：
