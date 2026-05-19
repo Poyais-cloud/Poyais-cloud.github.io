@@ -31,16 +31,6 @@
     }
   }
 
-  function updateSubtitle() {
-    var subtitle = document.querySelector('#subtitle');
-    if (subtitle && subtitle.textContent !== 'Curiosity is all you need.') {
-      if (window.typed && typeof window.typed.destroy === 'function') {
-        window.typed.destroy();
-      }
-      subtitle.textContent = 'Curiosity is all you need.';
-    }
-  }
-
   function updateRainState() {
     var isFocusMode = document.body.classList.contains('read-mode');
 
@@ -53,7 +43,6 @@
     }
 
     updateProfileLink();
-    updateSubtitle();
   }
 
   document.addEventListener('click', function(e) {
