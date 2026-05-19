@@ -1,4 +1,7 @@
 (function() {
+  var defaultAnnouncement = '<div class="announcement_content">Hi There! 我是 Poyais，SCNU 2024 级 CS 在读。<br>这里记录课程复习、编程学习和一些长期折腾。<br><a href="https://github.com/Poyais-cloud" target="_blank" rel="noopener">GitHub: Poyais-cloud</a><br><small>点击右下角阅读模式按钮可关闭雨滴效果</small></div>';
+  var focusAnnouncement = '<div class="announcement_content">雨已停，专注阅读中...<br><small>退出阅读模式可恢复雨滴</small></div>';
+
   var rainContainer = document.createElement('div');
   rainContainer.className = 'rain-container';
 
@@ -10,19 +13,26 @@
 
   document.body.appendChild(rainContainer);
 
-  var announcementWidget = document.querySelector('.card-announcement');
-  var defaultAnnouncement = '<div class="announcement_content">Hi There! 我是 Poyais，SCNU 2024 级 CS 在读。<br>这里记录课程复习、编程学习和一些长期折腾。<br><a href="https://github.com/Poyais-cloud" target="_blank" rel="noopener">GitHub: Poyais-cloud</a><br><small>点击右下角阅读模式按钮可关闭雨滴效果</small></div>';
-  var focusAnnouncement = '<div class="announcement_content">雨已停，专注阅读中...<br><small>退出阅读模式可恢复雨滴</small></div>';
+  function getAnnouncementWidget() {
+    return document.querySelector('.card-announcement');
+  }
+
+  function setAnnouncementContent(html) {
+    var announcementWidget = getAnnouncementWidget();
+    if (announcementWidget && announcementWidget.innerHTML !== html) {
+      announcementWidget.innerHTML = html;
+    }
+  }
 
   function updateRainState() {
     var isFocusMode = document.body.classList.contains('read-mode');
 
     if (isFocusMode) {
       rainContainer.classList.add('hidden');
-      if (announcementWidget) announcementWidget.innerHTML = focusAnnouncement;
+      setAnnouncementContent(focusAnnouncement);
     } else {
       rainContainer.classList.remove('hidden');
-      if (announcementWidget) announcementWidget.innerHTML = defaultAnnouncement;
+      setAnnouncementContent(defaultAnnouncement);
     }
   }
 
@@ -46,6 +56,12 @@
 
   observer.observe(document.body, { attributes: true });
   setTimeout(updateRainState, 500);
+  setTimeout(updateRainState, 1500);
+  setTimeout(updateRainState, 3000);
+
+  var announcementObserver = new MutationObserver(updateRainState);
+  var asideContent = document.querySelector('#aside-content') || document.body;
+  announcementObserver.observe(asideContent, { childList: true, subtree: true });
 
   document.addEventListener('click', function(e) {
     var ripple = document.createElement('div');

@@ -65,6 +65,10 @@ a:hover {
   border: 1px solid rgba(90, 143, 106, 0.2);
 }
 
+#aside-content .card-announcement .item-headline i {
+  display: none;
+}
+
 .tag,
 .category a {
   background: rgba(90, 143, 106, 0.15) !important;
