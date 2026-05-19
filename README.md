@@ -10,12 +10,7 @@ https://poyais-cloud.github.io/
 
 ## 内容方向
 
-- 前端与 JavaScript
-- 编译原理
-- 操作系统
-- 大学物理
-- ClawTime / AI 活动笔记
-- 博客搭建与学习工作流
+课程笔记，个人思考
 
 ## 仓库说明
 
