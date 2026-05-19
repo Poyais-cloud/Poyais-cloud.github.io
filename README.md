@@ -1,3 +1,35 @@
+# Poyais Blog
+
+这是 Poyais 的个人技术博客，主要记录计算机学习笔记、前端复习、课程整理、AI 活动笔记和一些长期学习中的思考。
+
+博客地址：
+
+https://poyais-cloud.github.io/
+
+当前博客使用 Hexo + Butterfly 构建，并通过 GitHub Pages 发布。
+
+## 内容方向
+
+- 前端与 JavaScript
+- 编译原理
+- 操作系统
+- 大学物理
+- ClawTime / AI 活动笔记
+- 博客搭建与学习工作流
+
+## 仓库说明
+
+本仓库使用两个主要分支：
+
+```text
+source  博客源码与 Markdown 文章
+master  GitHub Pages 展示的静态网站
+```
+
+如果你只是访问博客，请打开：
+
+https://poyais-cloud.github.io/
+
 # Poyais Blog 发布工作流
 
 这是给自己看的操作说明。日常只进这个目录：
@@ -8,7 +40,7 @@ cd /Users/poyais/my-blog-source
 
 不要在 `/Users/poyais/my-blog` 写文章。那里是线上网站生成结果。
 
-## 你只需要记住
+## 记住
 
 ```text
 source/_drafts/类型/  = 草稿，不发布
@@ -57,11 +89,7 @@ npm run import:obsidian -- --file "/Users/poyais/Poyais的知识库/05-前端面
 ```text
 frontend
 math
-clawtime
-compiler
-physics
-os
-blog
+...等等
 ```
 
 导入后会进入：
