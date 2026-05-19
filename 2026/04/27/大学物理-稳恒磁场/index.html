@@ -1,0 +1,454 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>大学物理 - 稳恒磁场 | Hi! I'm Poyais</title><meta name="author" content="Poyais"><meta name="copyright" content="Poyais"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="返回目录    03 — 稳恒磁场 上一节 [[02 - 静电场]] | 返回 [[00 - 索引]] | 下一节 [[04 - 电磁感应]]   1. 毕奥–萨伐尔定律（B-S Law）SOP [!note] 求磁感强度 B 的积分流程  取电流元 $Id\vec l$，标方向（沿电流方向） 写微元 B：$d\vec B &#x3D; \dfrac{\mu_0}{4\pi}\dfrac{Id\">
+<meta property="og:type" content="article">
+<meta property="og:title" content="大学物理 - 稳恒磁场">
+<meta property="og:url" content="https://poyais-cloud.github.io/2026/04/27/%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%86-%E7%A8%B3%E6%81%92%E7%A3%81%E5%9C%BA/index.html">
+<meta property="og:site_name" content="Hi! I&#39;m Poyais">
+<meta property="og:description" content="返回目录    03 — 稳恒磁场 上一节 [[02 - 静电场]] | 返回 [[00 - 索引]] | 下一节 [[04 - 电磁感应]]   1. 毕奥–萨伐尔定律（B-S Law）SOP [!note] 求磁感强度 B 的积分流程  取电流元 $Id\vec l$，标方向（沿电流方向） 写微元 B：$d\vec B &#x3D; \dfrac{\mu_0}{4\pi}\dfrac{Id\">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://poyais-cloud.github.io/img/avatar.jpg">
+<meta property="article:published_time" content="2026-04-26T16:18:00.000Z">
+<meta property="article:modified_time" content="2026-05-18T01:54:19.546Z">
+<meta property="article:author" content="Poyais">
+<meta property="article:tag" content="大学物理">
+<meta property="article:tag" content="稳恒磁场">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://poyais-cloud.github.io/img/avatar.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "大学物理 - 稳恒磁场",
+  "url": "https://poyais-cloud.github.io/2026/04/27/%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%86-%E7%A8%B3%E6%81%92%E7%A3%81%E5%9C%BA/",
+  "image": "https://poyais-cloud.github.io/img/avatar.jpg",
+  "datePublished": "2026-04-26T16:18:00.000Z",
+  "dateModified": "2026-05-18T01:54:19.546Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Poyais",
+      "url": "https://poyais-cloud.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://poyais-cloud.github.io/2026/04/27/%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%86-%E7%A8%B3%E6%81%92%E7%A3%81%E5%9C%BA/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.3"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '大学物理 - 稳恒磁场',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/custom-green.css"><meta name="generator" content="Hexo 8.1.2"></head><body><div class="bg-animation" id="web_bg" style="background-image: url(/img/site-bg.jpg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">18</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">22</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/notes/"><i class="fa-fw fas fa-book"></i><span> 期末复习</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/top-bg.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Hi! I'm Poyais</span></a><a class="nav-page-title" href="/"><span class="site-name">大学物理 - 稳恒磁场</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/notes/"><i class="fa-fw fas fa-book"></i><span> 期末复习</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">大学物理 - 稳恒磁场</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-04-26T16:18:00.000Z" title="发表于 2026-04-27 00:18:00">2026-04-27</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-05-18T01:54:19.546Z" title="更新于 2026-05-18 09:54:19">2026-05-18</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/SCNU%E6%9C%9F%E6%9C%AB%E8%AF%95%E5%8D%B7/">SCNU期末试卷</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/SCNU%E6%9C%9F%E6%9C%AB%E8%AF%95%E5%8D%B7/%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%86/">大学物理</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><div style="text-align:center;margin:10px 0;">
+<a href="/notes/physics/" style="display:inline-block;padding:6px 16px;background:rgba(90,143,106,0.1);color:#3a5f4a;border:1px solid rgba(90,143,106,0.3);border-radius:6px;text-decoration:none;font-size:14px;">返回目录</a>
+</div>
+
+
+<h1 id="03-—-稳恒磁场"><a href="#03-—-稳恒磁场" class="headerlink" title="03 — 稳恒磁场"></a>03 — 稳恒磁场</h1><blockquote>
+<p>上一节 [[02 - 静电场]] | 返回 [[00 - 索引]] | 下一节 [[04 - 电磁感应]]</p>
+</blockquote>
+<hr>
+<h2 id="1-毕奥–萨伐尔定律（B-S-Law）"><a href="#1-毕奥–萨伐尔定律（B-S-Law）" class="headerlink" title="1. 毕奥–萨伐尔定律（B-S Law）"></a>1. 毕奥–萨伐尔定律（B-S Law）</h2><h3 id="SOP"><a href="#SOP" class="headerlink" title="SOP"></a>SOP</h3><blockquote>
+<p>[!note] 求磁感强度 B 的积分流程</p>
+<ol>
+<li><strong>取电流元</strong> $Id\vec l$，标方向（沿电流方向）</li>
+<li><strong>写微元 B</strong>：$d\vec B &#x3D; \dfrac{\mu_0}{4\pi}\dfrac{Id\vec l \times \hat r}{r^2}$</li>
+<li><strong>判方向</strong>：用右手定则（拇指 dl 方向，四指 r 方向，掌心推 dB 方向）</li>
+<li><strong>积分</strong>：注意分量分解（与对称性）</li>
+</ol>
+</blockquote>
+<h3 id="速记结果（考试就考这几个）"><a href="#速记结果（考试就考这几个）" class="headerlink" title="速记结果（考试就考这几个）"></a>速记结果（<strong>考试就考这几个</strong>）</h3><ul>
+<li><strong>有限长直导线</strong>（端点对场点张角 θ₁、θ₂，距离 a）：<br>$$B &#x3D; \dfrac{\mu_0 I}{4\pi a}(\cos\theta_1 - \cos\theta_2)$$</li>
+<li><strong>无限长直导线</strong>：$B &#x3D; \dfrac{\mu_0 I}{2\pi a}$</li>
+<li><strong>半无限长（端点正下方）</strong>：$B &#x3D; \dfrac{\mu_0 I}{4\pi a}$</li>
+<li><strong>圆环（半径 R）轴线上距中心 z</strong>：$B &#x3D; \dfrac{\mu_0 I R^2}{2(R^2+z^2)^{3&#x2F;2}}$<ul>
+<li>圆心 z&#x3D;0：$B &#x3D; \dfrac{\mu_0 I}{2R}$</li>
+<li>圆弧（圆心，弧度 φ 段）：$B &#x3D; \dfrac{\mu_0 I \phi}{4\pi R}$</li>
+</ul>
+</li>
+<li><strong>载流元 $Id\vec l$</strong>（位于 O，沿 $\hat j$）在 P(d,0,0) 的 B：$d\vec B &#x3D; \dfrac{\mu_0 I dl}{4\pi d^2}(-\hat k)$（用 $\hat j\times\hat i &#x3D; -\hat k$）；在 Q(0,d,0)（与 dl 共线）：B &#x3D; 0</li>
+</ul>
+<h3 id="真题"><a href="#真题" class="headerlink" title="真题"></a>真题</h3><h4 id="A·一·5-（3-分）单选"><a href="#A·一·5-（3-分）单选" class="headerlink" title="[A·一·5]（3 分）单选"></a>[A·一·5]（3 分）单选</h4><blockquote>
+<p>电流元 $Id\vec l$ 位于原点 O，电流沿 +y 方向。空间点 P(d,0,0)，Q(0,d,0)。求 P、Q 两点的磁感应强度 $\vec B_1, \vec B_2$。</p>
+</blockquote>
+<p><strong>解答</strong></p>
+<ul>
+<li>P：$\vec r &#x3D; d\hat i$，$\hat r &#x3D; \hat i$；$d\vec l &#x3D; dl,\hat j$<ul>
+<li>$d\vec l \times \hat r &#x3D; dl(\hat j \times \hat i) &#x3D; -dl,\hat k$</li>
+<li>$\vec B_1 &#x3D; -\dfrac{\mu_0 I dl}{4\pi d^2}\hat k$</li>
+</ul>
+</li>
+<li>Q：$\hat r &#x3D; \hat j$，与 $d\vec l$ <strong>共线</strong> → $d\vec l \times \hat r &#x3D; 0$<ul>
+<li>$\vec B_2 &#x3D; 0$</li>
+</ul>
+</li>
+<li><strong>答案 C</strong></li>
+</ul>
+<hr>
+<h4 id="B·一·5-（3-分）单选"><a href="#B·一·5-（3-分）单选" class="headerlink" title="[B·一·5]（3 分）单选"></a>[B·一·5]（3 分）单选</h4><blockquote>
+<p>关于无限长均匀载流圆柱面和圆柱体（半径均为 R）周围磁场分布图，下列哪个正确？</p>
+</blockquote>
+<p><strong>解答</strong>（要点）</p>
+<ul>
+<li><strong>圆柱面（电流在表面）</strong>：内部 B&#x3D;0，外部 $B &#x3D; \mu_0 I&#x2F;(2\pi r)$ → 在 r&#x3D;R 处 B 不连续</li>
+<li><strong>圆柱体（电流均匀分布在整个截面）</strong>：内部 $B &#x3D; \mu_0 I r&#x2F;(2\pi R^2)$（与 r 成正比），外部 $B &#x3D; \mu_0 I&#x2F;(2\pi r)$ → 在 r&#x3D;R 处 B 连续，先线性增加再 1&#x2F;r 衰减</li>
+<li>答案应选**先线性后双曲线（连续）**那张图（典型为 D）</li>
+</ul>
+<blockquote>
+<p>[!tip] <strong>圆柱面 vs 圆柱体磁场关键差别</strong>：内部 B 是不是 0；分界处是否连续。</p>
+</blockquote>
+<hr>
+<h4 id="试卷1·一·4-（3-分）单选"><a href="#试卷1·一·4-（3-分）单选" class="headerlink" title="[试卷1·一·4]（3 分）单选"></a>[试卷1·一·4]（3 分）单选</h4><blockquote>
+<p>图1：边长 a 的正三角形顶点平行直导线（穿出纸面）三条，电流均为 I。求中心 O 处磁感应强度大小。<br>A. B&#x3D;0  B. $\sqrt{3}\dfrac{\mu_0 I}{\pi a}$  C. $\sqrt{3}\dfrac{\mu_0 I}{2\pi a}$  D. $\sqrt{3}\dfrac{\mu_0 I}{3\pi a}$</p>
+</blockquote>
+<p><strong>解答</strong></p>
+<ul>
+<li>等边三角形中心到顶点距离 $r &#x3D; a&#x2F;\sqrt{3}$（外心半径 &#x3D; $a&#x2F;\sqrt{3}$）</li>
+<li>单根直导线在 O 点的 B：$B_1 &#x3D; \dfrac{\mu_0 I}{2\pi r} &#x3D; \dfrac{\mu_0 I \sqrt{3}}{2\pi a}$</li>
+<li>三根电流方向相同，但每根在 O 处产生的 B 方向不同（沿垂直于”导线-O连线”，三个方向各自相差 120°）</li>
+<li>三个矢量按 120° 排布，<strong>矢量和 &#x3D; 0</strong></li>
+<li><strong>答案 A</strong></li>
+</ul>
+<blockquote>
+<p>[!tip] 几何对称（120° 间隔，等大小矢量）→ 矢量和 &#x3D; 0。<strong>这是常考的”陷阱”题</strong>：看到三角形 &#x2F; 正多边形对称布置，先想”是否抵消”。</p>
+</blockquote>
+<hr>
+<h4 id="试卷22·二·12-（3-分）填空"><a href="#试卷22·二·12-（3-分）填空" class="headerlink" title="[试卷22·二·12]（3 分）填空"></a>[试卷22·二·12]（3 分）填空</h4><blockquote>
+<p>真空中无限长载流导线折成图示形状（直线 + 半圆弧 R + 直线）。求 O 点磁感应强度大小及方向（沿穿入纸面或穿出）。</p>
+</blockquote>
+<p><strong>解答</strong>（典型几何：半径 R 的半圆弧 AB + 两段沿圆弧延长线的直线）</p>
+<ul>
+<li>直线段（沿半圆弧延长线，端点离 O 距离 R）：若是从无穷远到圆弧端点，且 O 处于直线<strong>延长线上</strong>（$\theta_1 &#x3D; 0,\theta_2 &#x3D; \pi&#x2F;2$ 或类似），需具体几何分析。</li>
+<li>标准结果（典型构形）：圆弧贡献 $B_{弧} &#x3D; \dfrac{\mu_0 I}{4R}$（半圆），加上直线段贡献 $B_{直}$</li>
+<li>若直线段沿延长线（从端点 → 无穷远）：在 O 处 $B_{直} &#x3D; \dfrac{\mu_0 I}{4\pi R}$</li>
+<li>总 $B &#x3D; \dfrac{\mu_0 I}{4R} + 2 \cdot \dfrac{\mu_0 I}{4\pi R}$（视图中两条直线均贡献）</li>
+<li>方向：用右手定则，电流绕半圆 → B 沿轴方向（穿入或穿出依电流方向定）</li>
+</ul>
+<blockquote>
+<p>[!warning] 此题严格答案依赖图中具体走线方向。考试时<strong>先标好电流方向</strong>，再用右手定则判定 B 方向。</p>
+</blockquote>
+<hr>
+<h2 id="2-安培环路定理"><a href="#2-安培环路定理" class="headerlink" title="2. 安培环路定理"></a>2. 安培环路定理</h2><h3 id="SOP-1"><a href="#SOP-1" class="headerlink" title="SOP"></a>SOP</h3><blockquote>
+<p>[!note] 用安培环路定理求 B</p>
+<ol>
+<li><strong>判断对称性是否合适</strong>（<strong>只对足够对称的电流分布</strong>才能解出 B）<ul>
+<li>无限长直导线（轴对称）✓</li>
+<li>无限长圆柱体&#x2F;圆柱面（轴对称）✓</li>
+<li>无限大载流平面（平面对称）✓</li>
+<li>无限长螺线管 &#x2F; 螺绕环 ✓</li>
+<li><strong>不可用</strong>：有限长导线、有限长螺线管、圆电流、有限长圆柱</li>
+</ul>
+</li>
+<li><strong>选回路 L</strong>：使 B 在回路上各处大小相同 + 方向沿 L 切向（或与 L 垂直，使该段贡献 0）</li>
+<li><strong>算 $\oint \vec B\cdot d\vec l &#x3D; B \cdot L_{有效}$</strong></li>
+<li><strong>算 $\sum I_{穿}$</strong>（用右手定则定正负：右手四指沿 L 绕行方向，拇指指向为穿过电流的正向）</li>
+<li><strong>解出 B</strong></li>
+</ol>
+</blockquote>
+<h3 id="真题-1"><a href="#真题-1" class="headerlink" title="真题"></a>真题</h3><h4 id="A·二·4-（4-分）双选"><a href="#A·二·4-（4-分）双选" class="headerlink" title="[A·二·4]（4 分）双选"></a>[A·二·4]（4 分）双选</h4><blockquote>
+<p>下列哪些情况能用安培环路定律求空间磁感应强度分布？<br>A. 有限长载流直导线  B. 有限长载流螺线管  C. 圆电流<br>D. 有限长同轴载流圆柱面  E. 载流螺绕环  F. 无限大均匀载流平面</p>
+</blockquote>
+<p><strong>解答</strong></p>
+<ul>
+<li>安培环路定理对所有电流分布<strong>恒成立</strong>，但仅对<strong>足够对称的</strong>情况能”解出”B。</li>
+<li>A、B、C、D 都缺乏足够对称性 → 不能直接解</li>
+<li>E（螺绕环）、F（无限大平面）有足够对称性 → ✓</li>
+<li><strong>答案 EF</strong></li>
+</ul>
+<hr>
+<h4 id="A·三·4-（3-分）填空"><a href="#A·三·4-（3-分）填空" class="headerlink" title="[A·三·4]（3 分）填空"></a>[A·三·4]（3 分）填空</h4><blockquote>
+<p>空间电流分布如图，$I_1&#x3D;5I_0, I_2&#x3D;3I_0, I_3&#x3D;6I_0$。L 是闭合回路。求 $\oint_L \vec B\cdot d\vec l$。</p>
+</blockquote>
+<p><strong>解答</strong></p>
+<ul>
+<li>若图中 L 包含 $I_1, I_3$（设方向：$I_1, I_3$ 与 L 的环绕方向同向，$I_2$ 不穿过或反向）—— 需具体看图</li>
+<li>一般答案形式：$\oint &#x3D; \mu_0(\pm I_1 \pm I_3)$</li>
+<li>例如若 $I_1$ 与 $I_3$ 都沿”右手定则正方向”穿过 L：$\oint &#x3D; \mu_0(5I_0 + 6I_0) &#x3D; 11\mu_0 I_0$</li>
+<li><strong>关键：只算穿过 L 的电流；不穿过的电流不计入。</strong> 用右手定则定正负。</li>
+</ul>
+<hr>
+<h4 id="试卷22·一·5-（3-分）单选"><a href="#试卷22·一·5-（3-分）单选" class="headerlink" title="[试卷22·一·5]（3 分）单选"></a>[试卷22·一·5]（3 分）单选</h4><blockquote>
+<p>图(a)、(b) 中各有半径相同的圆形回路 $L_1, L_2$，圆周内有电流 $I_1, I_2$（分布相同）。但 (b) 图中 $L_2$ 回路<strong>外</strong>有电流 $I_3$。$P_1, P_2$ 为两回路上对应点，正确的是（ ）。<br>A. $\oint_{L_1}\vec B\cdot d\vec l &#x3D; \oint_{L_2}\vec B\cdot d\vec l$，$\vec B_{P_1} &#x3D; \vec B_{P_2}$<br>B. $\oint_{L_1}\vec B\cdot d\vec l \ne \oint_{L_2}\vec B\cdot d\vec l$，$\vec B_{P_1} &#x3D; \vec B_{P_2}$<br>C. $\oint_{L_1}\vec B\cdot d\vec l &#x3D; \oint_{L_2}\vec B\cdot d\vec l$，$\vec B_{P_1} \ne \vec B_{P_2}$<br>D. $\oint_{L_1}\vec B\cdot d\vec l \ne \oint_{L_2}\vec B\cdot d\vec l$，$\vec B_{P_1} \ne \vec B_{P_2}$</p>
+</blockquote>
+<p><strong>解答</strong></p>
+<ul>
+<li>$\oint &#x3D; \mu_0\sum I_{穿}$，<strong>仅依赖回路内电流</strong>。$I_3$ 在 $L_2$ 外 → 两个 $\oint$ 相等。</li>
+<li>但 P 点的 $\vec B$ 由全部电流决定（含 $I_3$）→ $\vec B_{P_1} \ne \vec B_{P_2}$。</li>
+<li><strong>答案 C</strong></li>
+</ul>
+<blockquote>
+<p>[!tip] <strong>静电场和稳恒磁场的对称结论</strong>：</p>
+<ul>
+<li>高斯通量 &#x2F; 安培环量<strong>只看面或回路里的源</strong></li>
+<li>但<strong>面上 &#x2F; 回路上某点的场</strong>由空间所有源共同决定</li>
+<li>经常以双选 &#x2F; 单选形式考这个区别</li>
+</ul>
+</blockquote>
+<hr>
+<h4 id="试卷22·二·14-（3-分）填空"><a href="#试卷22·二·14-（3-分）填空" class="headerlink" title="[试卷22·二·14]（3 分）填空"></a>[试卷22·二·14]（3 分）填空</h4><blockquote>
+<p>半径 R 无限长直圆柱导线，沿轴向通电流 I 均匀分布。圆柱内一点 P 到中心轴线距离 r（r&lt;R），求 P 处磁感应强度大小。</p>
+</blockquote>
+<p><strong>解答</strong></p>
+<ul>
+<li>选半径 r 的同心圆为安培回路：$\oint &#x3D; B \cdot 2\pi r$</li>
+<li>穿过的电流：$I_{r} &#x3D; I \cdot \dfrac{\pi r^2}{\pi R^2} &#x3D; I\dfrac{r^2}{R^2}$</li>
+<li>$B \cdot 2\pi r &#x3D; \mu_0 I r^2&#x2F;R^2$</li>
+<li>$\boxed{B &#x3D; \dfrac{\mu_0 I r}{2\pi R^2}}$（与 r 成正比）</li>
+</ul>
+<hr>
+<h4 id="B·三·15-（3-分）填空"><a href="#B·三·15-（3-分）填空" class="headerlink" title="[B·三·15]（3 分）填空"></a>[B·三·15]（3 分）填空</h4><blockquote>
+<p>无限大均匀载流平面（电流密度 j），求两侧磁场大小。求解时，闭合路径应选择____，理由为____。</p>
+</blockquote>
+<p><strong>答案</strong></p>
+<ul>
+<li>$B &#x3D; \dfrac{\mu_0 j}{2}$（两侧大小相等，方向相反）</li>
+<li>闭合路径：<strong>矩形</strong>，两条长边平行于平面（一条在板上方，一条在下方），两条短边垂直穿过平面</li>
+<li>理由：长边方向与 $\vec B$ 平行 + B 在长边上等大；短边与 $\vec B$ 垂直 → 短边贡献为零；环路积分 $&#x3D; 2BL$（L 为长边长度）</li>
+</ul>
+<hr>
+<h4 id="A·七-（13-分）"><a href="#A·七-（13-分）" class="headerlink" title="[A·七]（13 分）"></a>[A·七]（13 分）</h4><blockquote>
+<p>无限长圆柱体半径 R，沿轴向均匀通电流 I。载流导线 AB 长 2L，电流 2I，与圆柱体相距 L（即 AB 端 A 距圆柱面 L）。<br>(1) 求圆柱体在空间产生的磁场分布；<br>(2) 求 AB 受到的安培力。</p>
+</blockquote>
+<p><strong>解答</strong></p>
+<p><strong>(1) 圆柱体磁场分布</strong>（用安培环路定理）：</p>
+<ul>
+<li>$r &lt; R$（内部）：$B &#x3D; \dfrac{\mu_0 I r}{2\pi R^2}$（径向 r 处）</li>
+<li>$r \ge R$（外部）：$B &#x3D; \dfrac{\mu_0 I}{2\pi r}$</li>
+<li>方向：与 I 方向构成右手螺旋（环绕圆柱）</li>
+</ul>
+<p><strong>(2) AB 受力</strong>：</p>
+<ul>
+<li>设圆柱轴沿 z 轴，I 沿 +z；AB 沿 +x 方向，长 2L，电流 2I 沿 +x。</li>
+<li>AB 端 A 距圆柱<strong>表面</strong>为 L，故 A 距<strong>轴</strong>为 R+L；B 距轴为 R+3L。</li>
+<li>在距离 r 处 AB 上的小段 dx：B 位于 -y 方向（按右手定则，I 沿+z 时，+x 处 B 沿 +y 方向？再核对：I 沿+z，由 BS 定律外部 B 沿 $\hat z \times \hat r &#x3D; $ 切向，在 +x 方向上 $\hat z\times\hat x &#x3D; \hat y$，所以 B 在 +y 方向）。修正：$\vec B(+x) &#x3D; +\hat y \cdot \mu_0 I&#x2F;(2\pi r)$</li>
+<li>$d\vec F &#x3D; (2I)dx\hat x \times B\hat y &#x3D; 2I B dx\hat z$（沿 +z）</li>
+<li>$F &#x3D; \int_{R+L}^{R+3L}\dfrac{2I \cdot \mu_0 I}{2\pi r}dr &#x3D; \dfrac{\mu_0 I^2}{\pi}\ln\dfrac{R+3L}{R+L}$</li>
+<li>方向：<strong>沿 +z</strong>（与圆柱内电流同向）</li>
+<li>$$\boxed{F &#x3D; \dfrac{\mu_0 I^2}{\pi}\ln\dfrac{R+3L}{R+L},;\text{方向沿圆柱电流方向}}$$</li>
+</ul>
+<blockquote>
+<p>[!tip] 此题第 (2) 问的关键是把”距圆柱体的距离”翻译为”距圆柱轴的距离”——把 R 加上。</p>
+</blockquote>
+<hr>
+<h2 id="3-安培力（载流导线在磁场中受力）"><a href="#3-安培力（载流导线在磁场中受力）" class="headerlink" title="3. 安培力（载流导线在磁场中受力）"></a>3. 安培力（载流导线在磁场中受力）</h2><h3 id="SOP-2"><a href="#SOP-2" class="headerlink" title="SOP"></a>SOP</h3><blockquote>
+<p>[!note]</p>
+<ol>
+<li>写出安培力微元：$d\vec F &#x3D; I d\vec l \times \vec B$</li>
+<li>在均匀场中：$\vec F &#x3D; I\vec L \times \vec B$（$\vec L$ 是首尾位移矢量）</li>
+<li>在非均匀场中：积分 $\vec F &#x3D; \int I d\vec l \times \vec B$</li>
+<li>闭合回路在<strong>均匀</strong>磁场中合力 &#x3D; 0（但<strong>非均匀</strong>场中不为零，例如近似无限长直导线旁的矩形回路）</li>
+</ol>
+</blockquote>
+<h3 id="真题-2"><a href="#真题-2" class="headerlink" title="真题"></a>真题</h3><h4 id="试卷1·二·15-（3-分）填空"><a href="#试卷1·二·15-（3-分）填空" class="headerlink" title="[试卷1·二·15]（3 分）填空"></a>[试卷1·二·15]（3 分）填空</h4><blockquote>
+<p>图3：均匀磁场 $\vec B$（垂直纸面向里）中的弯曲导线（直段 ac 长 l + 半圆弧 ocd 半径 R），导线通电流 I。求所受安培力大小、方向。</p>
+</blockquote>
+<p><strong>解答</strong>（典型情形：a→c→（半圆）→d，整段在均匀场中）</p>
+<ul>
+<li>均匀场中弯曲导线安培力 &#x3D; 始末端连线（首尾矢量）·I·B</li>
+<li>首尾位移：从 a 到 d 的直线连线，长度 &#x3D; $l + 2R$（看图确定）</li>
+<li>$F &#x3D; I (l+2R) B$</li>
+<li>方向：垂直于”首尾连线”方向，结合 B 方向（向里）和电流方向（端点 a→d 整体趋势）—— 用右手定则</li>
+<li><strong>F &#x3D; I (l+2R) B，方向：与首尾连线垂直、由洛伦兹力规则决定</strong></li>
+</ul>
+<blockquote>
+<p>[!tip] <strong>均匀磁场弯曲导线公式</strong>：$\vec F &#x3D; I \vec L_{首尾} \times \vec B$。<strong>只与首尾位置有关，与具体形状无关</strong>。</p>
+</blockquote>
+<hr>
+<h4 id="B·四·19-（15-分）"><a href="#B·四·19-（15-分）" class="headerlink" title="[B·四·19]（15 分）"></a>[B·四·19]（15 分）</h4><blockquote>
+<p>长直导线 AB 通 $I_1 &#x3D; 10$ A，矩形线圈 CDEF 通 $I_2 &#x3D; 5$ A，AB 与线圈共面，CD 与 EF 都与 AB 平行。$a &#x3D; 9$ cm（线圈与 AB 垂直方向尺寸）, $b &#x3D; 20$ cm（与 AB 平行的尺寸），$d &#x3D; 1$ cm（AB 到 CD 距离）。求：<br>(1) CD 处 B 的大小和方向；<br>(2) AB 磁场对线圈每边的力；<br>(3) AB 磁场对线圈的合力。</p>
+</blockquote>
+<p><strong>解答</strong></p>
+<p><strong>(1)</strong> 在 CD 处（距 AB 距离 d&#x3D;0.01 m）：<br>$$B_{CD} &#x3D; \dfrac{\mu_0 I_1}{2\pi d} &#x3D; \dfrac{4\pi\times 10^{-7}\times 10}{2\pi\times 0.01} &#x3D; \mathbf{2\times 10^{-4}\text{ T}}$$<br>方向：用右手定则（按 AB 电流方向定，垂直于线圈所在平面）。</p>
+<p><strong>(2)</strong> 各边力：</p>
+<ul>
+<li><strong>CD（与 AB 平行，距 d）</strong>：$F_{CD} &#x3D; I_2 b \cdot B_{CD} &#x3D; 5 \times 0.2 \times 2\times 10^{-4} &#x3D; 2\times 10^{-4}$ N<ul>
+<li>方向：若 CD 与 AB 同向 → 互相吸引（指向 AB）</li>
+</ul>
+</li>
+<li><strong>EF（与 AB 平行，距 d+a&#x3D;0.10 m）</strong>：<ul>
+<li>$B_{EF} &#x3D; \dfrac{\mu_0 I_1}{2\pi (d+a)} &#x3D; 2\times 10^{-5}$ T</li>
+<li>$F_{EF} &#x3D; 5\times 0.2 \times 2\times 10^{-5} &#x3D; 2\times 10^{-5}$ N</li>
+<li>方向：与 AB 反向 → 互相排斥（远离 AB）</li>
+</ul>
+</li>
+<li><strong>DE 与 CF（垂直于 AB）</strong>：$F &#x3D; \int I_2 dr \cdot B(r) &#x3D; \dfrac{\mu_0 I_1 I_2}{2\pi}\ln\dfrac{d+a}{d} &#x3D; \dfrac{4\pi\times 10^{-7}\times 10\times 5}{2\pi}\ln 10 \approx 2.3\times 10^{-6}$ N<ul>
+<li>这两边力方向<strong>相反</strong>（一边沿 AB 方向，一边反向）</li>
+<li>$\ln(0.1&#x2F;0.01) &#x3D; \ln 10 \approx 2.303$</li>
+</ul>
+</li>
+</ul>
+<p><strong>(3)</strong> <strong>合力</strong>：DE 和 CF 力大小相同方向相反 → 抵消</p>
+<ul>
+<li>$\vec F_{合} &#x3D; F_{CD} - F_{EF} &#x3D; 2\times 10^{-4} - 2\times 10^{-5} &#x3D; \mathbf{1.8\times 10^{-4}\text{ N}}$</li>
+<li>方向：<strong>指向 AB（吸引）</strong></li>
+</ul>
+<hr>
+<h4 id="试卷22·四·19-（15-分）—-与上题同类"><a href="#试卷22·四·19-（15-分）—-与上题同类" class="headerlink" title="[试卷22·四·19]（15 分）— 与上题同类"></a>[试卷22·四·19]（15 分）— 与上题同类</h4><blockquote>
+<p>长直导线（电流 $I_1$）旁有矩形回路 efgh（共面，宽 b、高 l），ef 边距导线 d，回路电流 $I_2$。求：(1) 各边磁场力方向；(2) 各边受力大小。</p>
+</blockquote>
+<p><strong>解答框架</strong>（与 B·四·19 同型，结果代入符号）</p>
+<ul>
+<li>$F_{ef} &#x3D; \dfrac{\mu_0 I_1 I_2 l}{2\pi d}$（最近边）</li>
+<li>$F_{gh} &#x3D; \dfrac{\mu_0 I_1 I_2 l}{2\pi (d+b)}$（最远边，方向与 ef 反向）</li>
+<li>$F_{fg} &#x3D; F_{eh} &#x3D; \dfrac{\mu_0 I_1 I_2}{2\pi}\ln\dfrac{d+b}{d}$（两上下边方向相反、相互抵消）</li>
+<li>合力：$F_{net} &#x3D; \dfrac{\mu_0 I_1 I_2 l}{2\pi}\left(\dfrac{1}{d} - \dfrac{1}{d+b}\right) &#x3D; \dfrac{\mu_0 I_1 I_2 l,b}{2\pi d(d+b)}$</li>
+<li>方向：取决于 $I_1, I_2$ 的相对方向。<strong>同向相吸，反向相斥</strong>。</li>
+</ul>
+<blockquote>
+<p>[!tip] <strong>直导线 + 共面矩形回路</strong>这类题：垂直边相互抵消，平行边的力差就是合力。<strong>模板化</strong>记下来。</p>
+</blockquote>
+<hr>
+<h2 id="4-霍尔效应"><a href="#4-霍尔效应" class="headerlink" title="4. 霍尔效应"></a>4. 霍尔效应</h2><h3 id="关键公式与判别"><a href="#关键公式与判别" class="headerlink" title="关键公式与判别"></a>关键公式与判别</h3><ul>
+<li>霍尔电压：$U_H &#x3D; \dfrac{IB}{nqd}$（n 载流子数密度，q 电荷符号决定 $U_H$ 正负，d 是 B 方向上的厚度）</li>
+<li>判定<strong>载流子类型</strong>：根据霍尔电压方向反推电荷正负<ul>
+<li>电流方向 + 磁场方向 → 用洛伦兹力定向 → 正电荷或负电荷向哪一侧偏 → 该侧电势高&#x2F;低</li>
+</ul>
+</li>
+</ul>
+<h3 id="真题-3"><a href="#真题-3" class="headerlink" title="真题"></a>真题</h3><h4 id="试卷1·一·5-（3-分）单选"><a href="#试卷1·一·5-（3-分）单选" class="headerlink" title="[试卷1·一·5]（3 分）单选"></a>[试卷1·一·5]（3 分）单选</h4><blockquote>
+<p>半导体薄片置于磁场中（图 2），薄片通方向向右的电流 I，求两侧的霍尔电势差。<br>选项：(A) 电子导电，$V_a &gt; V_b$；(B) 电子导电，$V_a &lt; V_b$；(C) 空穴导电，$V_a &gt; V_b$；(D) 空穴导电，$V_a &#x3D; V_b$。</p>
+</blockquote>
+<p><strong>解答</strong></p>
+<ul>
+<li>假设电流向右（+x），磁场方向（图中向上 +y）。则洛伦兹力 $\vec F &#x3D; q\vec v\times \vec B$</li>
+<li>电子（q&lt;0）：实际运动方向为 -x；$\vec v\times \vec B$ 方向为 $(-\hat x)\times \hat y &#x3D; -\hat z$；力方向 $q\vec v\times\vec B &#x3D; (-)(-\hat z) &#x3D; +\hat z$ → 电子被推向 +z 一侧（z 顶部）</li>
+<li>空穴（q&gt;0）：实际运动方向 +x；$\vec v\times\vec B &#x3D; \hat x\times \hat y &#x3D; +\hat z$；力方向 $+\hat z$ → 空穴被推向 +z 一侧</li>
+<li>两种载流子被推向<strong>同一侧</strong>！但电荷符号相反，结果电势高低相反。</li>
+<li>题中”a 侧、b 侧”的实际位置要看图。若 a 是 +z 方向那一侧：<ul>
+<li>电子聚集 → a 端电势低 → $V_a &lt; V_b$</li>
+<li>空穴聚集 → a 端电势高 → $V_a &gt; V_b$</li>
+</ul>
+</li>
+<li>标答典型为 **A（电子导电，$V_a &gt; V_b$）**或 <strong>C（空穴导电，$V_a &gt; V_b$）</strong>——具体看图中正方向。</li>
+<li>学习要点：<strong>霍尔效应判别载流子类型的逻辑链</strong>：测出 $U_H$ 方向 → 反推哪一侧载流子聚集 → 结合 $\vec v$ 与 $\vec F$ 方向 → 反推 q 正负 → 判电子 vs 空穴。</li>
+</ul>
+<blockquote>
+<p>[!warning] 霍尔效应题严格依赖图中坐标系。考试时务必画清 $\vec I, \vec B$ 方向，再用 $\vec F &#x3D; q\vec v\times \vec B$ 推导。</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>上一节 [[02 - 静电场]] | 返回 [[00 - 索引]] | 下一节 [[04 - 电磁感应]]</p>
+</blockquote>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://poyais-cloud.github.io">Poyais</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://poyais-cloud.github.io/2026/04/27/%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%86-%E7%A8%B3%E6%81%92%E7%A3%81%E5%9C%BA/">https://poyais-cloud.github.io/2026/04/27/%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%86-%E7%A8%B3%E6%81%92%E7%A3%81%E5%9C%BA/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://poyais-cloud.github.io" target="_blank">Hi! I'm Poyais</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%86/">大学物理</a><a class="post-meta__tags" href="/tags/%E7%A8%B3%E6%81%92%E7%A3%81%E5%9C%BA/">稳恒磁场</a></div><div class="post-share"><div class="social-share" data-image="/img/avatar.jpg" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2026/04/27/%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%86-%E8%AF%95%E5%8D%B7%E5%8E%9F%E9%A2%98%E6%B1%87%E6%80%BB/" title="大学物理 - 试卷原题汇总"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">大学物理 - 试卷原题汇总</div></div><div class="info-2"><div class="info-item-1"> 返回目录    99 — 试卷原题汇总（按试卷顺序） 上一节 [[04 - 电磁感应]] | 返回 [[00 - 索引]]  按试卷顺序列出每一题，并标注所属知识模块。可在对应模块文件中用题号（如 [A·一·1]）快速定位完整解答。  2019–2020 A卷（生命科学&#x2F;计科）一、单项选择题（每题 3 分）   题号 题干摘要 模块    [A·一·1] $\vec r &#x3D; (8+12t-5t^2)\hat i + (3-15t+3t^3)\hat j$，求 $t&#x3D;1$ s 加速度 [[01 - 力学]] · 质点运动学   [A·一·2] $\vec F&#x3D;(3t^2+2t)\hat i$，2 s 内冲量 [[01 - 力学]] · 动量与冲量   [A·一·3] 圆环均匀带电 Q，圆心 O 的 E 与 U [[02 - 静电场]] · 连续电荷分布   [A·一·4] 闭合面 S 内有 q1，外 q2 移动 → P 点 E 与 Φ 变化 [[02 - 静电场]] · 高斯定理   [A·一·5] 电流元在 P(d,0,0)、Q(0,d,...</div></div></div></a><a class="pagination-related" href="/2026/04/27/%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%86-%E7%94%B5%E7%A3%81%E6%84%9F%E5%BA%94/" title="大学物理 - 电磁感应"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">大学物理 - 电磁感应</div></div><div class="info-2"><div class="info-item-1"> 返回目录    04 — 电磁感应 上一节 [[03 - 稳恒磁场]] | 返回 [[00 - 索引]] | 下一节 [[99 - 试卷原题汇总]]   1. 法拉第电磁感应定律 + Lenz 定律SOP [!note] 求感应电动势 SOP  算磁通量 $\Phi(t) &#x3D; \int_S \vec B\cdot d\vec S$ 注意 $\vec B$ 不均匀时要积分 选定回路法向方向（决定 Φ 正负）   求 EMF 大小：$|\varepsilon| &#x3D; \left|\dfrac{d\Phi}{dt}\right|$ 判方向（Lenz 定律）：感应电流产生的 B 反抗 Φ 的变化 Φ 增大 → 感应 B 反向（反抗） Φ 减小 → 感应 B 同向（试图维持） 用右手定则反求电流方向     三大成因区分   成因 公式 例子    仅 B 变（回路不动） $\varepsilon &#x3D; -\int \dfrac{\partial \vec B}{\partial t}\cdot d\vec S$ 螺线管中电流变化诱发感应   仅回路动（B 不变...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2026/04/27/%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%86-%E9%9D%99%E7%94%B5%E5%9C%BA/" title="大学物理 - 静电场"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-04-27</div><div class="info-item-2">大学物理 - 静电场</div></div><div class="info-2"><div class="info-item-1"> 返回目录    02 — 静电场 上一节 [[01 - 力学]] | 返回 [[00 - 索引]] | 下一节 [[03 - 稳恒磁场]]   1. 库仑定律与点电荷叠加SOP [!note]  标出所有点电荷及目标点 P 写出每个点电荷在 P 处的 $\vec E_i$（注意符号 → 方向沿连线远离正电荷、指向负电荷） 矢量叠加 $\vec E_P &#x3D; \sum \vec E_i$（按分量求和，不是大小相加） 求电势：$U_P &#x3D; \sum \dfrac{kq_i}{r_i}$（标量代数和，含符号）   核心公式 点电荷场强 $E &#x3D; \dfrac{1}{4\pi\varepsilon_0}\dfrac{q}{r^2}$，方向沿连线 电势 $U &#x3D; \dfrac{1}{4\pi\varepsilon_0}\dfrac{q}{r}$（无穷远为零势） $k &#x3D; \dfrac{1}{4\pi\varepsilon_0} \approx 9\times 10^9$ N·m²&#x2F;C²  真题[B·二·9]（4 分）双选 B、C ...</div></div></div></a><a class="pagination-related" href="/2026/04/27/%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%86-%E5%8A%9B%E5%AD%A6/" title="大学物理 - 力学"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-04-27</div><div class="info-item-2">大学物理 - 力学</div></div><div class="info-2"><div class="info-item-1"> 返回目录    01 — 力学 返回 [[00 - 索引]]   1. 质点运动学SOP [!note] 已知 → 求 流程  已知 r(t) → v = dr/dt → a = dv/dt 已知 a(t) 与初值 → v = v₀ + ∫a dt → r = r₀ + ∫v dt 已知 F → a = F/m，再走上面流程 轨迹方程：从 x(t)、y(t) 中消去 t   核心公式 位矢 $\vec r(t) &#x3D; x(t),\hat i + y(t),\hat j$ 速度 $\vec v &#x3D; \dfrac{d\vec r}{dt}$，加速度 $\vec a &#x3D; \dfrac{d\vec v}{dt}$ 一维直线 $a &#x3D; \dfrac{dv}{dt} &#x3D; v\dfrac{dv}{dx}$（变力题最常考的链式法则）  真题[A·一·1]（3 分） 已知质点运动方程 $\vec r &#x3D; (8+12t-5t^2)\hat i + (3-15t+3t^3)\hat j$，求 $t&#x3D;1\text{ s}$ 时的加速度...</div></div></div></a><a class="pagination-related" href="/2026/04/27/%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%86-%E8%AF%95%E5%8D%B7%E5%8E%9F%E9%A2%98%E6%B1%87%E6%80%BB/" title="大学物理 - 试卷原题汇总"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-04-27</div><div class="info-item-2">大学物理 - 试卷原题汇总</div></div><div class="info-2"><div class="info-item-1"> 返回目录    99 — 试卷原题汇总（按试卷顺序） 上一节 [[04 - 电磁感应]] | 返回 [[00 - 索引]]  按试卷顺序列出每一题，并标注所属知识模块。可在对应模块文件中用题号（如 [A·一·1]）快速定位完整解答。  2019–2020 A卷（生命科学&#x2F;计科）一、单项选择题（每题 3 分）   题号 题干摘要 模块    [A·一·1] $\vec r &#x3D; (8+12t-5t^2)\hat i + (3-15t+3t^3)\hat j$，求 $t&#x3D;1$ s 加速度 [[01 - 力学]] · 质点运动学   [A·一·2] $\vec F&#x3D;(3t^2+2t)\hat i$，2 s 内冲量 [[01 - 力学]] · 动量与冲量   [A·一·3] 圆环均匀带电 Q，圆心 O 的 E 与 U [[02 - 静电场]] · 连续电荷分布   [A·一·4] 闭合面 S 内有 q1，外 q2 移动 → P 点 E 与 Φ 变化 [[02 - 静电场]] · 高斯定理   [A·一·5] 电流元在 P(d,0,0)、Q(0,d,...</div></div></div></a><a class="pagination-related" href="/2026/04/27/%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%86-%E7%94%B5%E7%A3%81%E6%84%9F%E5%BA%94/" title="大学物理 - 电磁感应"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-04-27</div><div class="info-item-2">大学物理 - 电磁感应</div></div><div class="info-2"><div class="info-item-1"> 返回目录    04 — 电磁感应 上一节 [[03 - 稳恒磁场]] | 返回 [[00 - 索引]] | 下一节 [[99 - 试卷原题汇总]]   1. 法拉第电磁感应定律 + Lenz 定律SOP [!note] 求感应电动势 SOP  算磁通量 $\Phi(t) &#x3D; \int_S \vec B\cdot d\vec S$ 注意 $\vec B$ 不均匀时要积分 选定回路法向方向（决定 Φ 正负）   求 EMF 大小：$|\varepsilon| &#x3D; \left|\dfrac{d\Phi}{dt}\right|$ 判方向（Lenz 定律）：感应电流产生的 B 反抗 Φ 的变化 Φ 增大 → 感应 B 反向（反抗） Φ 减小 → 感应 B 同向（试图维持） 用右手定则反求电流方向     三大成因区分   成因 公式 例子    仅 B 变（回路不动） $\varepsilon &#x3D; -\int \dfrac{\partial \vec B}{\partial t}\cdot d\vec S$ 螺线管中电流变化诱发感应   仅回路动（B 不变...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Poyais</div><div class="author-info-description">A personal tech blog by Poyais</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">18</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">22</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Hi There! 我是 Poyais，SCNU 2024 级 CS 在读。<br>这里记录课程复习、编程学习和一些长期折腾。<br><a href="https://github.com/Poyais-cloud" target="_blank" rel="noopener">GitHub: Poyais-cloud</a><br><small>点击右下角阅读模式按钮可关闭雨滴效果</small>
+</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#03-%E2%80%94-%E7%A8%B3%E6%81%92%E7%A3%81%E5%9C%BA"><span class="toc-number">1.</span> <span class="toc-text">03 — 稳恒磁场</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%AF%95%E5%A5%A5%E2%80%93%E8%90%A8%E4%BC%90%E5%B0%94%E5%AE%9A%E5%BE%8B%EF%BC%88B-S-Law%EF%BC%89"><span class="toc-number">1.1.</span> <span class="toc-text">1. 毕奥–萨伐尔定律（B-S Law）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SOP"><span class="toc-number">1.1.1.</span> <span class="toc-text">SOP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9F%E8%AE%B0%E7%BB%93%E6%9E%9C%EF%BC%88%E8%80%83%E8%AF%95%E5%B0%B1%E8%80%83%E8%BF%99%E5%87%A0%E4%B8%AA%EF%BC%89"><span class="toc-number">1.1.2.</span> <span class="toc-text">速记结果（考试就考这几个）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9C%9F%E9%A2%98"><span class="toc-number">1.1.3.</span> <span class="toc-text">真题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#A%C2%B7%E4%B8%80%C2%B75-%EF%BC%883-%E5%88%86%EF%BC%89%E5%8D%95%E9%80%89"><span class="toc-number">1.1.3.1.</span> <span class="toc-text">[A·一·5]（3 分）单选</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#B%C2%B7%E4%B8%80%C2%B75-%EF%BC%883-%E5%88%86%EF%BC%89%E5%8D%95%E9%80%89"><span class="toc-number">1.1.3.2.</span> <span class="toc-text">[B·一·5]（3 分）单选</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%95%E5%8D%B71%C2%B7%E4%B8%80%C2%B74-%EF%BC%883-%E5%88%86%EF%BC%89%E5%8D%95%E9%80%89"><span class="toc-number">1.1.3.3.</span> <span class="toc-text">[试卷1·一·4]（3 分）单选</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%95%E5%8D%B722%C2%B7%E4%BA%8C%C2%B712-%EF%BC%883-%E5%88%86%EF%BC%89%E5%A1%AB%E7%A9%BA"><span class="toc-number">1.1.3.4.</span> <span class="toc-text">[试卷22·二·12]（3 分）填空</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%AE%89%E5%9F%B9%E7%8E%AF%E8%B7%AF%E5%AE%9A%E7%90%86"><span class="toc-number">1.2.</span> <span class="toc-text">2. 安培环路定理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SOP-1"><span class="toc-number">1.2.1.</span> <span class="toc-text">SOP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9C%9F%E9%A2%98-1"><span class="toc-number">1.2.2.</span> <span class="toc-text">真题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#A%C2%B7%E4%BA%8C%C2%B74-%EF%BC%884-%E5%88%86%EF%BC%89%E5%8F%8C%E9%80%89"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">[A·二·4]（4 分）双选</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#A%C2%B7%E4%B8%89%C2%B74-%EF%BC%883-%E5%88%86%EF%BC%89%E5%A1%AB%E7%A9%BA"><span class="toc-number">1.2.2.2.</span> <span class="toc-text">[A·三·4]（3 分）填空</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%95%E5%8D%B722%C2%B7%E4%B8%80%C2%B75-%EF%BC%883-%E5%88%86%EF%BC%89%E5%8D%95%E9%80%89"><span class="toc-number">1.2.2.3.</span> <span class="toc-text">[试卷22·一·5]（3 分）单选</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%95%E5%8D%B722%C2%B7%E4%BA%8C%C2%B714-%EF%BC%883-%E5%88%86%EF%BC%89%E5%A1%AB%E7%A9%BA"><span class="toc-number">1.2.2.4.</span> <span class="toc-text">[试卷22·二·14]（3 分）填空</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#B%C2%B7%E4%B8%89%C2%B715-%EF%BC%883-%E5%88%86%EF%BC%89%E5%A1%AB%E7%A9%BA"><span class="toc-number">1.2.2.5.</span> <span class="toc-text">[B·三·15]（3 分）填空</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#A%C2%B7%E4%B8%83-%EF%BC%8813-%E5%88%86%EF%BC%89"><span class="toc-number">1.2.2.6.</span> <span class="toc-text">[A·七]（13 分）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%AE%89%E5%9F%B9%E5%8A%9B%EF%BC%88%E8%BD%BD%E6%B5%81%E5%AF%BC%E7%BA%BF%E5%9C%A8%E7%A3%81%E5%9C%BA%E4%B8%AD%E5%8F%97%E5%8A%9B%EF%BC%89"><span class="toc-number">1.3.</span> <span class="toc-text">3. 安培力（载流导线在磁场中受力）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SOP-2"><span class="toc-number">1.3.1.</span> <span class="toc-text">SOP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9C%9F%E9%A2%98-2"><span class="toc-number">1.3.2.</span> <span class="toc-text">真题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%95%E5%8D%B71%C2%B7%E4%BA%8C%C2%B715-%EF%BC%883-%E5%88%86%EF%BC%89%E5%A1%AB%E7%A9%BA"><span class="toc-number">1.3.2.1.</span> <span class="toc-text">[试卷1·二·15]（3 分）填空</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#B%C2%B7%E5%9B%9B%C2%B719-%EF%BC%8815-%E5%88%86%EF%BC%89"><span class="toc-number">1.3.2.2.</span> <span class="toc-text">[B·四·19]（15 分）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%95%E5%8D%B722%C2%B7%E5%9B%9B%C2%B719-%EF%BC%8815-%E5%88%86%EF%BC%89%E2%80%94-%E4%B8%8E%E4%B8%8A%E9%A2%98%E5%90%8C%E7%B1%BB"><span class="toc-number">1.3.2.3.</span> <span class="toc-text">[试卷22·四·19]（15 分）— 与上题同类</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E9%9C%8D%E5%B0%94%E6%95%88%E5%BA%94"><span class="toc-number">1.4.</span> <span class="toc-text">4. 霍尔效应</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E9%94%AE%E5%85%AC%E5%BC%8F%E4%B8%8E%E5%88%A4%E5%88%AB"><span class="toc-number">1.4.1.</span> <span class="toc-text">关键公式与判别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9C%9F%E9%A2%98-3"><span class="toc-number">1.4.2.</span> <span class="toc-text">真题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%95%E5%8D%B71%C2%B7%E4%B8%80%C2%B75-%EF%BC%883-%E5%88%86%EF%BC%89%E5%8D%95%E9%80%89"><span class="toc-number">1.4.2.1.</span> <span class="toc-text">[试卷1·一·5]（3 分）单选</span></a></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/05/18/blog-deploy-pitfalls-review/" title="GitHub Pages 博客部署踩坑复盘">GitHub Pages 博客部署踩坑复盘</a><time datetime="2026-05-18T03:05:00.000Z" title="发表于 2026-05-18 11:05:00">2026-05-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/05/17/clawtime/clawtime-02-entrepreneurs/" title="ClawTime 02 — 企业家思想录：AI时代的一人公司与认知共生">ClawTime 02 — 企业家思想录：AI时代的一人公司与认知共生</a><time datetime="2026-05-17T15:30:00.000Z" title="发表于 2026-05-17 23:30:00">2026-05-17</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/05/17/clawtime-01-hunter/" title="ClawTime 01 — 鲸鱼哥 Hunter：你不是在用模型，你是在和一种智能打交道">ClawTime 01 — 鲸鱼哥 Hunter：你不是在用模型，你是在和一种智能打交道</a><time datetime="2026-05-17T15:00:00.000Z" title="发表于 2026-05-17 23:00:00">2026-05-17</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/05/07/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E5%A4%84%E7%90%86%E5%99%A8%E7%AE%A1%E7%90%86/" title="操作系统-处理器管理">操作系统-处理器管理</a><time datetime="2026-05-07T07:35:00.000Z" title="发表于 2026-05-07 15:35:00">2026-05-07</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/27/%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%86-%E5%8A%9B%E5%AD%A6/" title="大学物理 - 力学">大学物理 - 力学</a><time datetime="2026-04-26T16:18:00.000Z" title="发表于 2026-04-27 00:18:00">2026-04-27</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(/img/site-bg.jpg);"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Poyais</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.2</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.3</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.3"></script><script src="/js/main.js?v=5.5.3"></script><div class="js-pjax"></div><script src="/js/custom-green.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
