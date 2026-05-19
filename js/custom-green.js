@@ -24,6 +24,13 @@
     }
   }
 
+  function updateProfileLink() {
+    var profileLink = document.querySelector('#card-info-btn');
+    if (profileLink) {
+      profileLink.href = 'https://github.com/Poyais-cloud';
+    }
+  }
+
   function updateRainState() {
     var isFocusMode = document.body.classList.contains('read-mode');
 
@@ -34,6 +41,8 @@
       rainContainer.classList.remove('hidden');
       setAnnouncementContent(defaultAnnouncement);
     }
+
+    updateProfileLink();
   }
 
   document.addEventListener('click', function(e) {
