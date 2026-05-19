@@ -31,6 +31,35 @@
     }
   }
 
+  function initSubtitleTyping() {
+    var subtitle = document.querySelector('#subtitle');
+    if (!subtitle || subtitle.dataset.poyaisTyped === 'true') return;
+
+    function startTyping() {
+      if (window.typed && typeof window.typed.destroy === 'function') {
+        window.typed.destroy();
+      }
+
+      subtitle.dataset.poyaisTyped = 'true';
+      subtitle.textContent = '';
+      window.typed = new Typed('#subtitle', {
+        strings: ['Curiosity is all you need.'],
+        startDelay: 200,
+        typeSpeed: 80,
+        backSpeed: 35,
+        backDelay: 2600,
+        loop: true,
+        showCursor: true
+      });
+    }
+
+    if (typeof Typed === 'function') {
+      startTyping();
+    } else if (window.btf && typeof btf.getScript === 'function') {
+      btf.getScript('https://cdn.jsdelivr.net/npm/typed.js@2.1.0/dist/typed.umd.min.js').then(startTyping);
+    }
+  }
+
   function updateRainState() {
     var isFocusMode = document.body.classList.contains('read-mode');
 
@@ -43,6 +72,7 @@
     }
 
     updateProfileLink();
+    initSubtitleTyping();
   }
 
   document.addEventListener('click', function(e) {
